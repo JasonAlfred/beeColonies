@@ -1,34 +1,34 @@
 -- Create tables for raw data to be loaded into
-CREATE TABLE CensusDataByState (
+CREATE TABLE census_state (
 	id INT PRIMARY KEY,
-	Year INT,
-	Period VARCHAR,
-	State FLOAT,
-	"State ANSI" FLOAT,
-	"Data Item" FLOAT,
-	Value FLOAT
+	"Year" INT,
+	"Period" VARCHAR,
+	"State" VARCHAR,
+	"State ANSI" INT,
+	"Data Item" VARCHAR,
+	"Value" INT
 );
 
-CREATE TABLE CensusDataByCounty (
+CREATE TABLE census_county (
 	id INT PRIMARY KEY,
-	Year INT,
-	State VARCHAR,
+	"Year" INT,
+	"State" VARCHAR,
 	"State ANSI" INT,
 	"Ag District" VARCHAR,
 	"Ag District Code" INT,
-	County VARCHAR,
+	"County" VARCHAR,
 	"County ANSI" FLOAT,
-	Value INT,
-	"CV (%)" FLOAT
+	"Value" INT,
+	"CV_pct" FLOAT
 );
 
-CREATE TABLE ColonyLoss (
+CREATE TABLE colonyloss (
 	id INT PRIMARY KEY,
-	Year INT,
-	State VARCHAR,
-	"Total Annual Loss (%)" FLOAT,
-	Beekeepers INT,
-	"Beekeepers Exclusive to State (%)" FLOAT,
-	Colonies INT,
-	"Colonies Exclusive to State (%)" FLOAT
+	"Year" VARCHAR,
+	"State" VARCHAR,
+	"Total Annual Loss_pct" FLOAT,
+	"Beekeepers" INT,
+	"Beekeepers Exclusive to State_pct" FLOAT,
+	"Colonies" INT,
+	"Colonies Exclusive to State_pct" FLOAT
 );
