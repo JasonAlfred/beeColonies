@@ -1,8 +1,8 @@
  -- Test to see if tables were created
-SELECT * FROM CensusDataByCounty;
+SELECT * FROM census_state;
 
-SELECT * FROM ColonyLoss;
+SELECT * FROM census_county;
 
-SELECT * FROM CensusDataByState;
+SELECT * FROM colonyloss;
 
 -- What are we joining on..
