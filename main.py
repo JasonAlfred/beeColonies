@@ -15,19 +15,10 @@ def home():
 
 
 #Use the <qid> as the param if needed.  Not sure how many endpoint we will need yet
-@app.route('/data_api/<qid>')
-def data_api(qid):
+@app.route('/data_api')
+def data_api():
     """Data API will return Bee data when structure is known"""
-
-#getBeeData is a stub SQL function to import and manage from SQL_functions.py  When
-#data is known, these enpoints will be fleshed out.
-
-#Test sqlite database is connected and available.  This will return and data
-#through the API when called in a json.
-
-#Need to call using ID for now as we don't know what params will be needed.
-# http://127.0.0.1:5000/data_api/1 example endpoint.
-
+    
     beeData = getBeeData()
     return jsonify(beeData)
 
