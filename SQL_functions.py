@@ -1,15 +1,17 @@
 import sqlite3
 
+
 def getBeeData():
     colonyLossResults = getColonyLossData()
     censusStateResults = getCensusStateData()
     censusCountyResults = getCensusCountyData()
 
     beeData = {"Bee Colony Loss Data": colonyLossResults,
-                "State Census Data": censusStateResults,
-                "County Census Data": censusCountyResults}
+               "State Census Data": censusStateResults,
+               "County Census Data": censusCountyResults}
 
     return beeData
+
 
 def getColonyLossData():
     conn = sqlite3.connect('data/bee_colony.sqlite')
@@ -21,15 +23,16 @@ def getColonyLossData():
     for row in result:
         colonyLossResults.append(
             {"Year": row[1],
-            "State": row[2],
-            "Total Annual Loss Percent": row[3],
-            "Beekeepers": row[4],
-            "Beekeepers Exclusive to State Percent": row[5],
-            "Colonies": row[6],
-            "Colonies Exclusive to State Percent": row[7]
+             "State": row[2],
+             "Total Annual Loss Percent": row[3],
+             "Beekeepers": row[4],
+             "Beekeepers Exclusive to State Percent": row[5],
+             "Colonies": row[6],
+             "Colonies Exclusive to State Percent": row[7]
              })
     conn.close()
     return colonyLossResults
+
 
 def getCensusStateData():
     conn = sqlite3.connect('data/bee_colony.sqlite')
@@ -41,13 +44,14 @@ def getCensusStateData():
     for row in result:
         censusStateResults.append(
             {"Year": row[1],
-            "State": row[3],
-            "State ANSI": row[4],
-            "Data Item": row[5],
-            "Value": row[6]
+             "State": row[3],
+             "State ANSI": row[4],
+             "Data Item": row[5],
+             "Value": row[6]
              })
     conn.close()
     return censusStateResults
+
 
 def getCensusCountyData():
     conn = sqlite3.connect('data/bee_colony.sqlite')
@@ -59,13 +63,13 @@ def getCensusCountyData():
     for row in result:
         censusCountyResults.append(
             {"Year": row[1],
-            "State": row[2],
-            "State ANSI": row[3],
-            "Ag District": row[4],
-            "Ag District Code": row[5],
-            "County": row[6],
-            "County ANSI": row[7],
-            "Value": row[8],
+             "State": row[2],
+             "State ANSI": row[3],
+             "Ag District": row[4],
+             "Ag District Code": row[5],
+             "County": row[6],
+             "County ANSI": row[7],
+             "Value": row[8],
              })
     conn.close()
     return censusCountyResults
