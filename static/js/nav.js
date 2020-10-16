@@ -1,20 +1,38 @@
 var beeData;
 
-function getBeeData() {
-    let dict = d3.json("/data_api").then(function(data) {
-        beeData = data;
-        console.log(beeData);
-
-    })
-}
-
 $(document).ready(function() {
+
+    // Get bee data function
+    function getBeeData() {
+        let dict = d3.json("/data_api").then(function(data) {
+            beeData = data;
+            console.log(beeData);
+    
+        })
+    }
+
+    // Functions to make a graph
+    function makeGraph(data) {
+        console.log('makeGraph called ' + data.name);
+
+        $('#alert')
+          .text('Click '+data.name+'')
+          .stop()
+          .css('backgroundColor', '#FFFFFF')
+          .animate({backgroundColor: '#0099CC'}, 1000);
+
+        var beeColonyLossData = beeData["Bee Colony Loss Data"];
+        var beeDataState = beeColonyLossData.filter(o => o.State === data.name);
+        console.log(beeDataState);
+
+        // TODO Plot Year vs. Colonies in graph1 html area
+
+    }
+
+    // JQuery functions to handle map
     $('#usaMap').usmap({
-      'stateSpecificStyles': {
-        'AK' : {fill: '#0099CC'}
-      },
       'stateSpecificHoverStyles': {
-        'HI' : {fill: '#0099CC'}
+        'HI' : {fill: '#0099AA'}
       },
       
       'mouseoverState': {
@@ -23,14 +41,20 @@ $(document).ready(function() {
         }
       },
       
-      
-      'click' : function(event, data) {
-        $('#alert')
-          .text('Click '+data.name+' on map 1')
-          .stop()
-          .css('backgroundColor', '#0099CC')
-          .animate({backgroundColor: '#0099CC'}, 1000);
+    //   'click' : function(event, data) {
+    //     $('#alert')
+    //       .text('Click '+data.name+'')
+    //       .stop()
+    //       .css('backgroundColor', '#FFFFFF')
+    //       .animate({backgroundColor: '#0099CC'}, 1000);
+
+    //     $('#graph1').text('' +data.name+ '');
+
+    //   }
+      'click' : function(event, data) { 
+          makeGraph(data)
       }
+
     });
     
     $('#over-md').click(function(event){
@@ -40,6 +64,10 @@ $(document).ready(function() {
     $('#out-md').click(function(event){
       $('#map').usmap('trigger', 'MD', 'mouseout', event);
     });
+
+    // call the getBeeData function
+    getBeeData();
+
   });
 
-getBeeData();
+
