@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/styles.css">
+    <script src="js/jquery.js"></script>
+    <script src="../static/js/raphael.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="../static/js/color.jquery.js"></script>
+    <script src="../static/js/jquery.usmap.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="../static/js/nav.js"></script>
     <link rel="icon" type="image/png" href="../static/bee.png">
@@ -57,19 +63,18 @@
             </ul>
         </div><!-- sidebar-container END -->
 
-<<<<<<< Updated upstream
-        <div class=col-10>
+    <div class="col-md-10">
 
-            .js can dynamically put the content of each selection in this div.
+        <div id="alert">Click Alerts</div>
 
-            Some Content
-=======
-    <div class="col-10">
+        <div id="usaMap" style="width: 600px; height: 400px;"></div>
+        <button id="over-md">mouseover MD</button> <button id="out-md">mouseout MD</button>
 
-        <div id="ourMap"></div>
->>>>>>> Stashed changes
+        <div id="graph1"></div>
 
-        </div>
+        <div id="graph2"></div>
+
+
     </div>
 </body>
 
