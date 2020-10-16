@@ -23,9 +23,26 @@ $(document).ready(function() {
 
         var beeColonyLossData = beeData["Bee Colony Loss Data"];
         var beeDataState = beeColonyLossData.filter(o => o.State === data.name);
-        console.log(beeDataState);
+        //console.log(beeDataState);
 
         // TODO Plot Year vs. Colonies in graph1 html area
+        $('#graph1').text('' +data.name+ '');
+        var xData = beeDataState.map(o => o.Year);
+        var yData = beeDataState.map(o => o.Colonies);
+
+        var trace = {
+            x: xData,
+            y: yData,
+            type: "lines"
+        };
+
+        var graphData = [trace];
+
+        var layout = {
+            title: "Bee Colonies Over Time"
+        };
+
+        Plotly.newPlot("graph1", graphData, layout);
 
     }
 
