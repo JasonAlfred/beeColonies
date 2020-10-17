@@ -44,6 +44,7 @@ def getCensusStateData():
     for row in result:
         censusStateResults.append(
             {"Year": row[1],
+             "Period": row[2], ## CK needs this column
              "State": row[3],
              "State ANSI": row[4],
              "Data Item": row[5],
