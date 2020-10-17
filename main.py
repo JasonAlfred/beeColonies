@@ -2,6 +2,7 @@ from flask import current_app as app
 from flask import render_template
 from flask import Flask, jsonify
 from SQL_functions import getBeeData
+from config import htmlIndex
 
 # Setup Flask Local Server and SQL Server data connection
 app = Flask(__name__)
@@ -10,7 +11,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     """Landing page."""
-    return render_template('index.html',
+    return render_template(htmlIndex,
                            title="Bee Colony Decline",
                            description="Bee Colony decline")
 
