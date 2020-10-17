@@ -19,13 +19,13 @@ $(document).ready(function() {
           .text('Click '+data.name+'')
           .stop()
           .css('backgroundColor', '#FFFFFF')
-          .animate({backgroundColor: '#0099CC'}, 1000);
+          .animate({backgroundColor: '#F5B700'}, 1000);
 
         var beeColonyLossData = beeData["Bee Colony Loss Data"];
         var beeDataState = beeColonyLossData.filter(o => o.State === data.name);
         //console.log(beeDataState);
 
-        // TODO Plot Year vs. Colonies in graph1 html area
+        // Plot Year vs. Colonies in graph1 html area
         $('#graph1').text('' +data.name+ '');
         var xData = beeDataState.map(o => o.Year);
         var yData = beeDataState.map(o => o.Colonies);
@@ -33,13 +33,25 @@ $(document).ready(function() {
         var trace = {
             x: xData,
             y: yData,
-            type: "lines"
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Colonies',
+            line: {
+                color: 'rgb(244, 184, 0)',
+                width: 2
+            }
         };
 
         var graphData = [trace];
 
         var layout = {
-            title: "Bee Colonies Over Time"
+            title: "Bee Colonies Over Time",
+            xaxis: {
+                title: 'year'
+              },
+              yaxis: {
+                title: '# of bee colonies'
+              }
         };
 
         Plotly.newPlot("graph1", graphData, layout);
