@@ -3,6 +3,7 @@ from flask import render_template
 from flask import Flask, jsonify
 from SQL_functions import getBeeData
 from config import htmlIndex
+import json
 
 # Setup Flask Local Server and SQL Server data connection
 app = Flask(__name__)
@@ -23,6 +24,14 @@ def data_api():
 
     beeData = getBeeData()
     return jsonify(beeData)
+
+
+@app.route('/data_CountyData')
+def get_County():
+    """Data API will return County Data"""
+    with open('data/geoJsonCountyMap.geoJson', 'r') as jsonfile:
+        file_data = json.loads(jsonfile.read())
+    return json.dumps(file_data)
 
 
 if __name__ == "__main__":
