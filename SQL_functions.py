@@ -64,12 +64,15 @@ def getCensusCountyData():
         censusCountyResults.append(
             {"Year": row[1],
              "State": row[2],
-             "State ANSI": row[3],
-             "Ag District": row[4],
-             "Ag District Code": row[5],
+             "StateANSI": row[3],
+             "AgDistrict": row[4],
+             "AgDistrictCode": row[5],
              "County": row[6],
-             "County ANSI": row[7],
+             "CountyANSI": row[7],
              "Value": row[8],
+             "LandArea": row[9],
+             "AreaName": row[10],
+             "ColonyDensity": row[11]
              })
     conn.close()
     return censusCountyResults
