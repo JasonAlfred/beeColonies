@@ -16,6 +16,14 @@ def home():
                            title="Bee Colony Decline",
                            description="Bee Colony decline")
 
+@app.route('/queenBee')
+def queenBee():
+    """Landing page."""
+    return render_template('queenBee.html',
+                           title="Bee Colony Decline",
+                           description="Bee Colony decline")
+
+                    
 
 # Use the <qid> as the param if needed.  Not sure how many endpoint we will need yet
 @app.route('/data_api')
