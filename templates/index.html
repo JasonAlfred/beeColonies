@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="description" content={{description}}>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- All the CSS Noise-->
+    <!-- Leaflet/Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Our css-->
+    <link rel="stylesheet" type="text/css" href="static/css/styleJason.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <link rel="icon" type="image/png" href="../static/bee.png">
+    <!-- free icon from https://icons8.com/icons/set/bee -->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+        <a class="navbar-brand" href="#">
+            <img src="../static/bee.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span id="menu-title">{{title}}</span>
+        </a>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <!-- Separator with title -->
+                <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
+                    <small>MAIN MENU</small>
+                </li>
+                <a href="#" class="bg-dark list-group-item list-group-item-action">
+                    <div id="graph1" class="d-flex w-100 justify-content-start align-items-center">
+                        <span>Graph 1</span>
+                    </div>
+                </a>
+                <a href="/queenBee" class="bg-dark list-group-item list-group-item-action">
+                    <div id="graph2" class="d-flex w-100 justify-content-start align-items-center">
+                        <span>Graph 2</span>
+                    </div>
+                </a>
+                <a href="#" class="bg-dark list-group-item list-group-item-action">
+                    <div id="graph3" class="d-flex w-100 justify-content-start align-items-center">
+                        <span>Bee Colony Density by County</span>
+                    </div>
+                </a>
+
+                <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
+                    <small>DATA</small>
+                </li>
+                <a href="#" class="bg-dark list-group-item list-group-item-action">
+                    <div id = "datalink" class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="data_link">Some more stuff</span>
+                    </div>
+                </a>
+            </ul>
+        </div>
+
+
+        <!-- main page -->
+        <div class="col-10">
+            <div id="map"></div>
+        </div>
+
+
+        <!--All the Javascript Noise-->
+        <!-- Leaflet/d3 JS-->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+
+        <!-- Leaflet-Choropleth JavaScript -->
+        <script type="text/javascript" src="static/js/choropleth.js"></script>
+
+        <!-- Our JS -->
+        <script type="text/javascript" src="static/js/nav.js"></script>
+        <script type="text/javascript" src="static/js/config.js"></script>
+        <script type="text/javascript" src="static/js/countyMapJason.js"></script>
+</body>
+
+</html>
