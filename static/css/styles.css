@@ -12,7 +12,7 @@
 #sidebar-container .list-group a {
     background-color: transparent;
     /* height: 50px; */
-    color: black;
+    color: #23212C;
 }
 
 #sidebar-container .list-group a:hover {
@@ -48,7 +48,7 @@ body {
 
 .navbar {
     padding: 0;
-    background: white;
+    background: #ffeeb0;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
@@ -64,8 +64,15 @@ body {
 .bee-menu-header {
     background: #ffdf6b;
     font-weight: 600;
+    color: #23212C;
 }
 
 .bee-brand {
-    float: center;
+    margin: auto;
+}
+
+.alert-primary {
+    color: #992409;
+    background-color: #cce5ff;
+    border-color: #b8daff;
 }
