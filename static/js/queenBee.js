@@ -114,8 +114,9 @@ $(document).ready(function () {
       .animate({ backgroundColor: '#F5B700' }, 1000);
 
     var beeColonyLossData = beeData["Bee Colony Loss Data"];
-    var beeStateCensus = beeData["State Census Data"] ;
     var beeLossDataByState = beeColonyLossData.filter(o => o.State === data.name);
+
+    var beeStateCensus = beeData["State Census Data"] ;
     var allBeeDatabyState = beeStateCensus.filter(s => s.State === capitalStateName) ;
     var beeStateInventory = allBeeDatabyState.filter(i => i["Data Item"] === "INVENTORY") ;
     var beeStateInventoryMarketYear = beeStateInventory.filter(m => m["Period"] === "MARKETING YEAR") ;
@@ -126,14 +127,15 @@ $(document).ready(function () {
     // Plot Year vs. Colonies in graph1 html area
     $('#graph1').text('' + data.name + '');
     var xData = beeLossDataByState.map(o => o.Year);
-    var yData = beeLossDataByState.map(o => o.Colonies);
+    var yData = beeLossDataByState.map(o => o.Beekeepers);
+    console.log(yData);
 
     var trace = {
       x: xData,
       y: yData,
       type: 'scatter',
       mode: 'lines',
-      name: 'Colonies',
+      name: 'Beekeepers',
       line: {
         color: 'rgb(244, 184, 0)',
         width: 2
@@ -143,12 +145,12 @@ $(document).ready(function () {
     var graphData = [trace];
 
     var layout = {
-      title: "Bee Colonies Over Time",
+      title: "Beekeepers Over Time",
       xaxis: {
         title: 'year'
       },
       yaxis: {
-        title: '# of bee colonies'
+        title: '# of beekeepers'
       }
     };
 
