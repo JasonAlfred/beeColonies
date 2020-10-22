@@ -114,12 +114,19 @@ $(document).ready(function () {
       .animate({ backgroundColor: '#F5B700' }, 1000);
 
     var beeColonyLossData = beeData["Bee Colony Loss Data"];
-    var beeDataState = beeColonyLossData.filter(o => o.State === data.name);
+    var beeStateCensus = beeData["State Census Data"] ;
+    var beeLossDataByState = beeColonyLossData.filter(o => o.State === data.name);
+    var allBeeDatabyState = beeStateCensus.filter(s => s.State === capitalStateName) ;
+    var beeStateInventory = allBeeDatabyState.filter(i => i["Data Item"] === "INVENTORY") ;
+    var beeStateInventoryMarketYear = beeStateInventory.filter(m => m["Period"] === "MARKETING YEAR") ;
+
+    console.log(beeStateInventory) ;
+    console.log(beeStateInventoryMarketYear) ;
 
     // Plot Year vs. Colonies in graph1 html area
     $('#graph1').text('' + data.name + '');
-    var xData = beeDataState.map(o => o.Year);
-    var yData = beeDataState.map(o => o.Colonies);
+    var xData = beeLossDataByState.map(o => o.Year);
+    var yData = beeLossDataByState.map(o => o.Colonies);
 
     var trace = {
       x: xData,
@@ -147,7 +154,43 @@ $(document).ready(function () {
 
     Plotly.newPlot("graph1", graphData, layout);
 
+     $('#graph2').text('' +data.name+ '');
+  // var xData2 = beeStateInventory.map(y => y.Year) ;
+  var xData2 = beeStateInventoryMarketYear.map(y => y.Year) ;
+  // var yData2 = beeStateInventory.map(v => v.Value) ;
+  var yData2 = beeStateInventoryMarketYear.map(v => v.Value) ;
+  var trace2 = 
+    {
+      x: xData2,
+      y: yData2,
+      type: 'scatter',
+      mode: 'lines',
+      name: 'Colonies',
+      line:
+        {
+          color: 'rgb(244, 184, 0)',
+          width: 2
+        }
+    } ;
+    var graphData2 = [trace2] ;
+    var layout2 = 
+    {
+      title: "Number of Bee Colonies per Year",
+      xaxis: {
+        title: 'Year'
+      },
+      yaxis: {
+        title: 'Number of Bee Colonies'
+      }
+    } ;
+    Plotly.newPlot("graph2", graphData2, layout2) ;
+
+
   }
+
+ 
+
+
 
   // JQuery functions to handle map
   $('#usaMap').usmap({
