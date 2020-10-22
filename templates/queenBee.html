@@ -31,72 +31,81 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-      <a class="navbar-brand" href="#">
-          <img src="../static/logo2.jpg"  width="50" height="30" alt="bee_logo">
-          <a class="menu-title">{{title}}</a>
-      </a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="bee-brand">
+            <img src="../static/logo1.jpg"  width="100px" height="auto" alt="bee_logo">
+        </div>
     </nav>
 
+    <div class="row">
+        <div class = "col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+            <!-- Separator with title -->
+            <li class="bee-menu-header list-group-item">
+                MAIN MENU
+            </li>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <div class="graph1">Bee Colony Loss by State</div>
+                </div>
+            </a>
+            <a href="/" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="graph2">Bee Colony Density by County</span>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="graph3">Graph 3</span>
+                </div>
+            </a>
 
-  <div class="row">
-    <div class = "col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
-      <!-- Bootstrap List Group -->
-      <ul class="list-group">
-          <!-- Separator with title -->
-          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
-              <small>MAIN MENU</small>
-          </li>
-          <a href="#" class="bg-dark list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                  <div class="graph1">Bee Colony Loss by State</div>
-              </div>
-          </a>
-          <a href="/" class="bg-dark list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                  <span class="graph2">Bee Colony Density by County</span>
-              </div>
-          </a>
-          <a href="#" class="bg-dark list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                  <span class="graph3">Graph 3</span>
-              </div>
-          </a>
+            <li class="bee-menu-header list-group-item">
+                DATA
+            </li>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="data_link">Some more stuff</span>
+                </div>
+            </a>
+        </ul>
+        </div><!-- sidebar-container END -->
 
-          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
-              <small>DATA</small>
-          </li>
-          <a href="#" class="bg-dark list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                  <span class="data_link">Some more stuff</span>
-              </div>
-          </a>
-      </ul>
-    </div><!-- sidebar-container END -->
-
-
-    <div class = "col-10">
-
-        <div class="row">
-            <div class = "col-10">
-                 <!-- This thing won't change size no matter how much I changed px -->
-                <div id="usaMap" style="width: 600px; height: 400px;"></div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
             <div class = "col-10">
 
-                <div id="graph1" style="width: 1000px; height: 400px;"></div>
-                <div id="graph2" style="width: 1000px; height: 400px;"></div>
-                <div id="cynthia" style="width: 1000px; height: 400px;"></div>
+                <div class="row mt-4 ml-2">
+                    <div class = "col-6 text-center">
+                        <div class="alert alert-primary" role="alert">
+                            Click on the map to learn more about the bee colonies of each state!
+                        </div>
 
+                        <!-- <p>Click on the map to learn more about the bee colonies of each state!</p> -->
+
+                        <!-- This thing won't change size no matter how much I changed px -->
+                        <div class="mx-auto" id="usaMap" style="width: 700px; height: 400px;"></div>
+            
+
+
+                    </div>
+
+                    <div class = "col-6">
+
+                        <div id="graph1" style="width: 700px; height: 400px;"></div>
+                        <div id="graph2" style="width: 700px; height: 400px;"></div>
+                        <!-- TO DO: See if the plot can position the label somewhere else -->
+                        <!-- Also make the labels consistent with Ali's graph -->
+                        <div id="cynthia" style="width: 700px; height: 400px;"></div>
+
+                    </div>
+                </div>
             </div>
-        </div>
+
+
+
     </div>
 
+   
 </body>
 
 </html>
