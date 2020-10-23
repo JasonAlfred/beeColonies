@@ -1,12 +1,8 @@
 # Twenty-one Bees 🍯🐝
 
-MAKE SURE TO DO SOMETHING ABOUT `main.py` with the `from config import htmlIndex`
-
 This is Project 2 for Data Analytics & Visualization Bootcamp University of Minnesota. 
 
 Authors: Alexis Anderson, Jason Alfred, Rhyce Erickson, Cynthia Kunakom
-
-Background: -----RHYCE------
 
 Data source: https://data.world/finley/bee-colony-statistical-data-from-1987-2017
 
@@ -22,7 +18,8 @@ Technologies & Tools included in this project:
 - Database: sqlite
 
 INSTRUCTIONS:
-
+Please clone this repository to your local 
+Create the database 
 Obtaining Data: ---- cynthia ---
 - include the `source activate NewPythonData`
 

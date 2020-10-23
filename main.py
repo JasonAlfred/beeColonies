@@ -27,6 +27,13 @@ def choropleth():
     """Landing page."""
     return render_template('choropleth.html',
                            title="Bee Colony Decline",
+                           description="Bee Colony decline")   
+
+@app.route('/extra')
+def extra():
+    """Landing page."""
+    return render_template('extra.html',
+                           title="Bee Colony Decline",
                            description="Bee Colony decline")                
 
 # Use the <qid> as the param if needed.  Not sure how many endpoint we will need yet
