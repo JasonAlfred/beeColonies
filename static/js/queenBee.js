@@ -125,7 +125,7 @@ $(document).ready(function () {
     console.log(beeStateInventoryMarketYear);
 
     // Plot Year vs. Colonies in graph1 html area
-    $('#graph1').text('' + data.name + '');
+    $('#ali').text('' + data.name + '');
     var xData = beeLossDataByState.map(o => o.Year);
     var yData = beeLossDataByState.map(o => o.Beekeepers);
     console.log(yData);
@@ -154,9 +154,9 @@ $(document).ready(function () {
       }
     };
 
-    Plotly.newPlot("graph1", graphData, layout);
+    Plotly.newPlot("ali", graphData, layout);
 
-    $('#graph2').text('' + data.name + '');
+    $('#rhyce').text('' + data.name + '');
     var xData2 = beeStateInventoryMarketYear.map(y => y.Year);
     var yData2 = beeStateInventoryMarketYear.map(v => v.Value);
     var trace2 =
@@ -183,7 +183,7 @@ $(document).ready(function () {
         title: 'Number of Bee Colonies'
       }
     };
-    Plotly.newPlot("graph2", graphData2, layout2);
+    Plotly.newPlot("rhyce", graphData2, layout2);
 
   }
 
