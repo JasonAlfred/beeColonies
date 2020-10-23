@@ -116,13 +116,13 @@ $(document).ready(function () {
     var beeColonyLossData = beeData["Bee Colony Loss Data"];
     var beeLossDataByState = beeColonyLossData.filter(o => o.State === data.name);
 
-    var beeStateCensus = beeData["State Census Data"] ;
-    var allBeeDatabyState = beeStateCensus.filter(s => s.State === capitalStateName) ;
-    var beeStateInventory = allBeeDatabyState.filter(i => i["Data Item"] === "INVENTORY") ;
-    var beeStateInventoryMarketYear = beeStateInventory.filter(m => m["Period"] === "MARKETING YEAR") ;
+    var beeStateCensus = beeData["State Census Data"];
+    var allBeeDatabyState = beeStateCensus.filter(s => s.State === capitalStateName);
+    var beeStateInventory = allBeeDatabyState.filter(i => i["Data Item"] === "INVENTORY");
+    var beeStateInventoryMarketYear = beeStateInventory.filter(m => m["Period"] === "MARKETING YEAR");
 
-    console.log(beeStateInventory) ;
-    console.log(beeStateInventoryMarketYear) ;
+    console.log(beeStateInventory);
+    console.log(beeStateInventoryMarketYear);
 
     // Plot Year vs. Colonies in graph1 html area
     $('#graph1').text('' + data.name + '');
@@ -156,12 +156,10 @@ $(document).ready(function () {
 
     Plotly.newPlot("graph1", graphData, layout);
 
-     $('#graph2').text('' +data.name+ '');
-  // var xData2 = beeStateInventory.map(y => y.Year) ;
-  var xData2 = beeStateInventoryMarketYear.map(y => y.Year) ;
-  // var yData2 = beeStateInventory.map(v => v.Value) ;
-  var yData2 = beeStateInventoryMarketYear.map(v => v.Value) ;
-  var trace2 = 
+    $('#graph2').text('' + data.name + '');
+    var xData2 = beeStateInventoryMarketYear.map(y => y.Year);
+    var yData2 = beeStateInventoryMarketYear.map(v => v.Value);
+    var trace2 =
     {
       x: xData2,
       y: yData2,
@@ -169,13 +167,13 @@ $(document).ready(function () {
       mode: 'lines',
       name: 'Colonies',
       line:
-        {
-          color: 'rgb(244, 184, 0)',
-          width: 2
-        }
-    } ;
-    var graphData2 = [trace2] ;
-    var layout2 = 
+      {
+        color: 'rgb(244, 184, 0)',
+        width: 2
+      }
+    };
+    var graphData2 = [trace2];
+    var layout2 =
     {
       title: "Number of Bee Colonies per Year",
       xaxis: {
@@ -184,21 +182,14 @@ $(document).ready(function () {
       yaxis: {
         title: 'Number of Bee Colonies'
       }
-    } ;
-    Plotly.newPlot("graph2", graphData2, layout2) ;
-
+    };
+    Plotly.newPlot("graph2", graphData2, layout2);
 
   }
-
- 
-
 
 
   // JQuery functions to handle map
   $('#usaMap').usmap({
-    'stateSpecificHoverStyles': {
-      'HI': { fill: '#0099AA' }
-    },
 
     'mouseoverState': {
       'HI': function (event, data) {
@@ -209,7 +200,6 @@ $(document).ready(function () {
     'click': function (event, data) {
       makeGraph(data)
     }
-
   });
 
   $('#over-md').click(function (event) {
@@ -220,7 +210,6 @@ $(document).ready(function () {
     $('#map').usmap('trigger', 'MD', 'mouseout', event);
   });
 
-  // call the getBeeData function
   getBeeData();
 
 });
