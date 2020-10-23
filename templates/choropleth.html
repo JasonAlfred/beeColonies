@@ -50,11 +50,17 @@
                         <div id="graph1">Bee Colony Loss by State</div>
                     </div>
                 </a>
-                <a href="/choropleth" class="list-group-item list-group-item-action">
+
+                <li class="bee-menu-header list-group-item">
+                    Bee Colony Density by County
+                </li>
                     <div class="d-flex w-100 justify-content-start align-items-center">
-                        <div id="graph2">Bee Colony Density by County</div>
+                        <div id="graph2" style = "padding-top: 12px; padding-bottom: 12px;">
+                            <a href="/choropleth2002" class="list-group-item list-group-item-action" style = "display: inline;">2002</a>
+                            <a href="/choropleth2007" class="list-group-item list-group-item-action" style = "display: inline;">2007</a>
+                            <a href="/choropleth2012" class="list-group-item list-group-item-action" style = "display: inline;">2012</a>
+                        </div>
                     </div>
-                </a>
 
                 <li class="bee-menu-header list-group-item">
                     Extras
@@ -72,20 +78,23 @@
         </div>
 
     </div>
-        <!--All the Javascript Noise-->
-        <!-- Leaflet/d3 JS-->
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!--All the Javascript Noise-->
+    <!-- Leaflet/d3 JS-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
-        <!-- Leaflet-Choropleth JavaScript -->
-        <script type="text/javascript" src="../static/js/choropleth.js"></script>
+    <!-- Leaflet-Choropleth JavaScript -->
+    <script type="text/javascript" src="../static/js/choropleth.js"></script>
 
-        <!-- Our JS -->
-        <script type="text/javascript" src="../static/js/nav.js"></script>
-        <script type="text/javascript" src="../static/js/config.js"></script>
-        <script type="text/javascript" src="../static/js/countyMapJason.js"></script>
+    <!-- Our JS -->
+    <script type="text/javascript" src="../static/js/nav.js"></script>
+    <script type="text/javascript" src="../static/js/config.js"></script>
+    <script type="text/javascript" src="../static/js/countyMapJason.js"></script>
+    <script>
+        renderChoropleth({{year}});
+    </script>
 
 </body>
 

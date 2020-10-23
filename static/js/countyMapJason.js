@@ -1,18 +1,24 @@
 // Need to check if map is already initialized since we are
 // not reloading pages.
+
+function renderChoropleth(year) {
   var container = L.DomUtil.get('map');
-      if(container != null){
-        container._leaflet_id = null;
-      }
+  if (container != null) {
+    container._leaflet_id = null;
+  }
+
 
   // Creating map object
-  let mapYear = 2012
+  let mapYear = year
+
   let myMap = L.map("map", {
     center: [39.8283, -98.5795],
     zoom: 4.5
+
   });
 
   // Adding tile layer
+
   L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -21,6 +27,7 @@
     id: "mapbox/light-v10",
     accessToken: API_KEY
   }).addTo(myMap);
+
 
   // Load in geojson data 
   // Three years available and make 3 calls for layers 2002, 2007, 2012
@@ -89,3 +96,5 @@
     legend.addTo(myMap);
 
   });
+}
+
