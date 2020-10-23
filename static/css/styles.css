@@ -37,6 +37,7 @@
 
 body {
     background: #f7f7f7;
+    color: #3A3637;
     
 }
 
@@ -75,4 +76,14 @@ body {
     color: #992409;
     background-color: #cce5ff;
     border-color: #b8daff;
+}
+
+#ali {
+    color: #992409;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+h4 {
+    padding: 10px 0;
 }
