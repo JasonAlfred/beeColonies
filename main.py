@@ -19,22 +19,22 @@ def home():
 def queenBee():
     """Landing page."""
     return render_template('queenBee.html',
-                           title="Bee Colony Decline",
-                           description="Bee Colony decline")
+                           title="Bee Colony Loss by State",
+                           description="Bee Colony Loss by State")
 
 @app.route('/choropleth')
 def choropleth():
     """Landing page."""
     return render_template('choropleth.html',
-                           title="Bee Colony Decline",
-                           description="Bee Colony decline")   
+                           title="Bee Colony Density by County",
+                           description="Bee Colony Density by County")   
 
 @app.route('/extra')
 def extra():
     """Landing page."""
     return render_template('extra.html',
-                           title="Bee Colony Decline",
-                           description="Bee Colony decline")                
+                           title="Extra",
+                           description="Extra")                
 
 # Use the <qid> as the param if needed.  Not sure how many endpoint we will need yet
 @app.route('/data_api')
