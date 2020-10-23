@@ -23,7 +23,12 @@ def queenBee():
                            title="Bee Colony Decline",
                            description="Bee Colony decline")
 
-                    
+@app.route('/choropleth')
+def choropleth():
+    """Landing page."""
+    return render_template('choropleth.html',
+                           title="Bee Colony Decline",
+                           description="Bee Colony decline")                
 
 # Use the <qid> as the param if needed.  Not sure how many endpoint we will need yet
 @app.route('/data_api')

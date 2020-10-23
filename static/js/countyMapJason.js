@@ -1,5 +1,3 @@
-function cloroplethMap() {
-
 // Need to check if map is already initialized since we are
 // not reloading pages.
   var container = L.DomUtil.get('map');
@@ -91,4 +89,3 @@ function cloroplethMap() {
     legend.addTo(myMap);
 
   });
-}
