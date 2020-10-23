@@ -28,7 +28,8 @@ Obtaining Data: ---- cynthia ---
 
 Run `python main.py` in the terminal.
 
-
+MAKE SURE TO INCLUDE `config.js` in `static/js`
+- assign the variable as `API_KEY = <your api key>`
 
 
 
