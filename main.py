@@ -1,6 +1,6 @@
 from flask import current_app as app
 from flask import render_template
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 from SQL_functions import getBeeData
 import json
 
@@ -23,11 +23,18 @@ def queenBee():
                            description="Bee Colony Loss by State")
 
 @app.route('/choropleth')
-def choropleth():
+def choro():
+    return redirect("/choropleth2012")
+
+@app.route('/choropleth<year>')
+def choropleth(year):
     """Landing page."""
     return render_template('choropleth.html',
+
+                           year= year,
                            title="Bee Colony Density by County",
                            description="Bee Colony Density by County")   
+   
 
 @app.route('/extra')
 def extra():
