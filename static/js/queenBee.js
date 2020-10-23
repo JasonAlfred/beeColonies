@@ -47,7 +47,7 @@ $(document).ready(function () {
       x: collapse2016.map(i => i['Period']),
       y: collapse2016.map(i => i['Value']),
       type: 'bar',
-      name: '2016 - CCD'
+      name: '2016<br>Colony<br>Collapsed<br>Disorder'
     };
 
     // Create trace data for 2017
@@ -57,7 +57,7 @@ $(document).ready(function () {
       x: collapse2017.map(i => i['Period']),
       y: collapse2017.map(i => i['Value']),
       type: 'bar',
-      name: '2017 - CCD'
+      name: '2017<br>Colony<br>Collapsed<br>Disorder'
     };
 
     // -------- DEADOUT -------- //
@@ -68,7 +68,7 @@ $(document).ready(function () {
       x: deadout2016.map(i => i['Period']),
       y: deadout2016.map(i => i['Value']),
       type: 'bar',
-      name: '2016 - Deadout'
+      name: '2016<br>Deadout'
     };
 
     // Create trace data for 2017
@@ -78,7 +78,7 @@ $(document).ready(function () {
       x: deadout2017.map(i => i['Period']),
       y: deadout2017.map(i => i['Value']),
       type: 'bar',
-      name: '2017 - Deadout'
+      name: '2017<br>Deadout'
     };
 
     // Create data plot
@@ -88,9 +88,7 @@ $(document).ready(function () {
     var layout = {
       title: "Loss of Bee Colonies by State",
       xaxis: { title: "Period" },
-      yaxis: { title: "Number of Colonies Loss" },
-      // barmode: "stack"
-      margin: { t: 30, l: 150 }
+      yaxis: { title: "Number of Colonies Loss" }
     }
 
     // Render the scatter plot
