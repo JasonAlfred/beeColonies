@@ -4,14 +4,19 @@
 }
 #sidebar-container {
     min-height: 100vh;   
-    background-color: #333;
-    padding: 0;
+    background-color: #fff2ce;
+    padding-right: 0;
 }
 
 /* Menu item*/
 #sidebar-container .list-group a {
-    height: 50px;
-    color: white;
+    background-color: transparent;
+    /* height: 50px; */
+    color: #23212C;
+}
+
+#sidebar-container .list-group a:hover {
+    background-color: #FCB43A;
 }
 
 /* Submenu item*/
@@ -31,7 +36,7 @@
 }
 
 body {
-    background: rgb(255, 255, 255);
+    background: #f7f7f7;
     
 }
 
@@ -41,6 +46,33 @@ body {
     padding-right: 10px;
 }
 
+.navbar {
+    padding: 0;
+    background: #ffeeb0;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
 
+/* .navbar-brand {
+    float: left;
+    padding: 9.5px 15px;
+    font-size: 26px;ssssssssss
+    line-height: 21px;
+    height: 40px;
+} */
   
- 
+
+.bee-menu-header {
+    background: #ffdf6b;
+    font-weight: 600;
+    color: #23212C;
+}
+
+.bee-brand {
+    margin: auto;
+}
+
+.alert-primary {
+    color: #992409;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}

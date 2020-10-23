@@ -14,102 +14,94 @@ $(document).ready(function () {
   // Plotting stuff //
   function colonyCollapsed(stateInput) {
 
-    // d3.json("/data_api").then(function (data) {
+    var stateData = beeData['State Census Data'];
 
-      var stateData = beeData['State Census Data'];
+    // Show only results based on the selected state
+    var stateSelect = stateData.filter(s => s['State'] === stateInput);
 
-      console.log(stateData);
+    console.log(stateSelect);
 
-      // Show only results based on the selected state
-      var stateSelect = stateData.filter(s => s['State'] === stateInput);
+    // More filter - only included array with the period 
+    var period = stateSelect.filter(s =>
+      s['Period'] === 'JAN THRU MAR' ||
+      s['Period'] === 'APR THRU JUN' ||
+      s['Period'] === 'JUL THRU SEP' ||
+      s['Period'] === 'OCT THRU DEC'
+    );
 
-      console.log(stateSelect);
+    console.log(period);
 
-      // More filter - only included array with the period 
-      var period = stateSelect.filter(s =>
-        s['Period'] === 'JAN THRU MAR' ||
-        s['Period'] === 'APR THRU JUN' ||
-        s['Period'] === 'JUL THRU SEP' ||
-        s['Period'] === 'OCT THRU DEC'
-      );
+    // Filter for colonies count that is lost d/t CCD -- CHANGE TO stateInput if above works...
+    var LossCollapsed = period.filter(s => s['Data Item'] === 'LOSS, COLONY COLLAPSE DISORDER');
+    var deadout = period.filter(s => s['Data Item'] === 'LOSS, DEADOUT');
 
-      console.log(period);
+    console.log(deadout);
 
-      // Filter for colonies count that is lost d/t CCD -- CHANGE TO stateInput if above works...
-      var LossCollapsed = period.filter(s => s['Data Item'] === 'LOSS, COLONY COLLAPSE DISORDER');
-      var deadout = period.filter(s => s['Data Item'] === 'LOSS, DEADOUT');
+    // Show only results based on the selected state - Bar plot
 
-      console.log(deadout);
+    // -------- COLLAPSED -------- //
+    // Create trace data for 2016
+    var collapse2016 = LossCollapsed.filter(s => s.Year === 2016);
 
-      // console.log(period);
+    var trace1 = {
+      x: collapse2016.map(i => i['Period']),
+      y: collapse2016.map(i => i['Value']),
+      type: 'bar',
+      name: '2016 - CCD'
+    };
 
-      // Show only results based on the selected state - Bar plot
+    // Create trace data for 2017
+    var collapse2017 = LossCollapsed.filter(s => s.Year === 2017);
 
-      // -------- COLLAPSED -------- //
-      // Create trace data for 2016
-      var collapse2016 = LossCollapsed.filter(s => s.Year === 2016);
+    var trace2 = {
+      x: collapse2017.map(i => i['Period']),
+      y: collapse2017.map(i => i['Value']),
+      type: 'bar',
+      name: '2017 - CCD'
+    };
 
-      var trace1 = {
-        x: collapse2016.map(i => i['Period']),
-        y: collapse2016.map(i => i['Value']),
-        type: 'bar',
-        name: '2016 - CCD'
-      };
+    // -------- DEADOUT -------- //
+    // Create trace data for 2016
+    var deadout2016 = deadout.filter(s => s.Year === 2016);
 
-      // Create trace data for 2017
-      var collapse2017 = LossCollapsed.filter(s => s.Year === 2017);
+    var trace3 = {
+      x: deadout2016.map(i => i['Period']),
+      y: deadout2016.map(i => i['Value']),
+      type: 'bar',
+      name: '2016 - Deadout'
+    };
 
-      var trace2 = {
-        x: collapse2017.map(i => i['Period']),
-        y: collapse2017.map(i => i['Value']),
-        type: 'bar',
-        name: '2017 - CCD'
-      };
+    // Create trace data for 2017
+    var deadout2017 = deadout.filter(s => s.Year === 2017);
 
-      // -------- DEADOUT -------- //
-      // Create trace data for 2016
-      var deadout2016 = deadout.filter(s => s.Year === 2016);
+    var trace4 = {
+      x: deadout2017.map(i => i['Period']),
+      y: deadout2017.map(i => i['Value']),
+      type: 'bar',
+      name: '2017 - Deadout'
+    };
 
-      var trace3 = {
-        x: deadout2016.map(i => i['Period']),
-        y: deadout2016.map(i => i['Value']),
-        type: 'bar',
-        name: '2016 - Deadout'
-      };
+    // Create data plot
+    var data = [trace1, trace3, trace2, trace4];
 
-      // Create trace data for 2017
-      var deadout2017 = deadout.filter(s => s.Year === 2017);
+    // Create layout
+    var layout = {
+      title: "Loss of Bee Colonies by State",
+      xaxis: { title: "Period" },
+      yaxis: { title: "Number of Colonies Loss" },
+      // barmode: "stack"
+      margin: { t: 30, l: 150 }
+    }
 
-      var trace4 = {
-        x: deadout2017.map(i => i['Period']),
-        y: deadout2017.map(i => i['Value']),
-        type: 'bar',
-        name: '2017 - Deadout'
-      };
-
-      // Create data plot
-      var data = [trace1, trace3, trace2, trace4];
-
-      // Create layout
-      var layout = {
-        title: "Loss of Bee Colonoies by State",
-        xaxis: { title: "Period" },
-        yaxis: { title: "Number of Colonies Loss" },
-        // barmode: "stack"
-        margin: { t: 30, l: 150 }
-      }
-
-      // Render the scatter plot
-      Plotly.newPlot("cynthia", data, layout);
-
-    // })
+    // Render the scatter plot
+    Plotly.newPlot("cynthia", data, layout);
   }
-// --------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------
   // Functions to make a graph
   function makeGraph(data) {
-    
-    var stateName = data.name ;
-    var capitalStateName = stateName.toUpperCase() ;
+
+    var stateName = data.name;
+    var capitalStateName = stateName.toUpperCase();
 
     colonyCollapsed(capitalStateName);
 
@@ -122,20 +114,28 @@ $(document).ready(function () {
       .animate({ backgroundColor: '#F5B700' }, 1000);
 
     var beeColonyLossData = beeData["Bee Colony Loss Data"];
-    var beeDataState = beeColonyLossData.filter(o => o.State === data.name);
-    //console.log(beeDataState);
+    var beeLossDataByState = beeColonyLossData.filter(o => o.State === data.name);
+
+    var beeStateCensus = beeData["State Census Data"];
+    var allBeeDatabyState = beeStateCensus.filter(s => s.State === capitalStateName);
+    var beeStateInventory = allBeeDatabyState.filter(i => i["Data Item"] === "INVENTORY");
+    var beeStateInventoryMarketYear = beeStateInventory.filter(m => m["Period"] === "MARKETING YEAR");
+
+    console.log(beeStateInventory);
+    console.log(beeStateInventoryMarketYear);
 
     // Plot Year vs. Colonies in graph1 html area
     $('#graph1').text('' + data.name + '');
-    var xData = beeDataState.map(o => o.Year);
-    var yData = beeDataState.map(o => o.Colonies);
+    var xData = beeLossDataByState.map(o => o.Year);
+    var yData = beeLossDataByState.map(o => o.Beekeepers);
+    console.log(yData);
 
     var trace = {
       x: xData,
       y: yData,
       type: 'scatter',
       mode: 'lines',
-      name: 'Colonies',
+      name: 'Beekeepers',
       line: {
         color: 'rgb(244, 184, 0)',
         width: 2
@@ -145,24 +145,51 @@ $(document).ready(function () {
     var graphData = [trace];
 
     var layout = {
-      title: "Bee Colonies Over Time",
+      title: "Beekeepers Over Time",
       xaxis: {
         title: 'year'
       },
       yaxis: {
-        title: '# of bee colonies'
+        title: '# of beekeepers'
       }
     };
 
     Plotly.newPlot("graph1", graphData, layout);
 
+    $('#graph2').text('' + data.name + '');
+    var xData2 = beeStateInventoryMarketYear.map(y => y.Year);
+    var yData2 = beeStateInventoryMarketYear.map(v => v.Value);
+    var trace2 =
+    {
+      x: xData2,
+      y: yData2,
+      type: 'scatter',
+      mode: 'lines',
+      name: 'Colonies',
+      line:
+      {
+        color: 'rgb(244, 184, 0)',
+        width: 2
+      }
+    };
+    var graphData2 = [trace2];
+    var layout2 =
+    {
+      title: "Number of Bee Colonies per Year",
+      xaxis: {
+        title: 'Year'
+      },
+      yaxis: {
+        title: 'Number of Bee Colonies'
+      }
+    };
+    Plotly.newPlot("graph2", graphData2, layout2);
+
   }
+
 
   // JQuery functions to handle map
   $('#usaMap').usmap({
-    'stateSpecificHoverStyles': {
-      'HI': { fill: '#0099AA' }
-    },
 
     'mouseoverState': {
       'HI': function (event, data) {
@@ -170,20 +197,9 @@ $(document).ready(function () {
       }
     },
 
-    //   'click' : function(event, data) {
-    //     $('#alert')
-    //       .text('Click '+data.name+'')
-    //       .stop()
-    //       .css('backgroundColor', '#FFFFFF')
-    //       .animate({backgroundColor: '#0099CC'}, 1000);
-
-    //     $('#graph1').text('' +data.name+ '');
-
-    //   }
     'click': function (event, data) {
       makeGraph(data)
     }
-
   });
 
   $('#over-md').click(function (event) {
@@ -194,7 +210,6 @@ $(document).ready(function () {
     $('#map').usmap('trigger', 'MD', 'mouseout', event);
   });
 
-  // call the getBeeData function
   getBeeData();
 
 });
