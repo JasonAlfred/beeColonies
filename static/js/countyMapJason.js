@@ -97,4 +97,3 @@ function renderChoropleth(year) {
 
   });
 }
-

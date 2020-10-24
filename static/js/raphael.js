@@ -18,14 +18,14 @@
         has = "hasOwnProperty",
         separator = /[\.\/]/,
         wildcard = "*",
-        fun = function () {},
+        fun = function () { },
         numsort = function (a, b) {
             return a - b;
         },
         current_event,
         stop,
-        events = {n: {}},
-    
+        events = { n: {} },
+
         eve = function (name, scope) {
             var e = events,
                 args = Array.prototype.slice.call(arguments, 2),
@@ -81,7 +81,7 @@
             }
             return out.length ? out : null;
         };
-    
+
     eve.listeners = function (name) {
         var names = name.split(separator),
             e = events,
@@ -113,14 +113,14 @@
         }
         return out;
     };
-    
-    
+
+
     eve.on = function (name, f) {
         var names = name.split(separator),
             e = events;
         for (var i = 0, ii = names.length; i < ii; i++) {
             e = e.n;
-            !e[names[i]] && (e[names[i]] = {n: {}});
+            !e[names[i]] && (e[names[i]] = { n: {} });
             e = e[names[i]];
         }
         e.f = e.f || [];
@@ -134,18 +134,18 @@
             }
         };
     };
-    
+
     eve.stop = function () {
         stop = 1;
     };
-    
+
     eve.nt = function (subname) {
         if (subname) {
             return new RegExp("(?:\\.|\\/|^)" + subname + "(?:\\.|\\/|$)").test(current_event);
         }
         return current_event;
     };
-    
+
     eve.unbind = function (name, f) {
         var names = name.split(separator),
             e,
@@ -197,7 +197,7 @@
             }
         }
     };
-    
+
     eve.version = version;
     eve.toString = function () {
         return "You are running Eve " + version;
@@ -213,7 +213,7 @@
 // │ Licensed under the MIT (http://raphaeljs.com/license.html) license. │ \\
 // └─────────────────────────────────────────────────────────────────────┘ \\
 (function () {
-    
+
     function R(first) {
         if (R.is(first, "function")) {
             return loaded ? first() : eve.on("DOMload", first);
@@ -245,7 +245,7 @@
     R.eve = eve;
     var loaded,
         separator = /[, ]+/,
-        elements = {circle: 1, rect: 1, path: 1, ellipse: 1, text: 1, image: 1},
+        elements = { circle: 1, rect: 1, path: 1, ellipse: 1, text: 1, image: 1 },
         formatrg = /\{(\d+)\}/g,
         proto = "prototype",
         has = "hasOwnProperty",
@@ -258,7 +258,7 @@
             is: g.win.Raphael
         },
         Paper = function () {
-            
+
             this.customAttributes = {};
         },
         paperproto,
@@ -293,7 +293,7 @@
         push = "push",
         ISURL = R._ISURL = /^url\(['"]?([^\)]+?)['"]?\)$/i,
         colourRegExp = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+%?(?:\s*,\s*[\d\.]+%?)?)\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\))\s*$/i,
-        isnan = {"NaN": 1, "Infinity": 1, "-Infinity": 1},
+        isnan = { "NaN": 1, "Infinity": 1, "-Infinity": 1 },
         bezierrg = /^(?:cubic-)?bezier\(([^,]+),([^,]+),([^,]+),([^\)]+)\)/,
         round = math.round,
         setAttribute = "setAttribute",
@@ -362,7 +362,7 @@
             y: nu
         },
         commaSpaces = /\s*,\s*/,
-        hsrg = {hs: 1, rg: 1},
+        hsrg = { hs: 1, rg: 1 },
         p2s = /,?([achlmqrstvxz]),?/gi,
         pathCommand = /([achlmrqstvz])[\s,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?\s*,?\s*)+)/ig,
         tCommand = /([rstm])[\s,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?\s*,?\s*)+)/ig,
@@ -375,7 +375,7 @@
         sortByNumber = function (a, b) {
             return toFloat(a) - toFloat(b);
         },
-        fun = function () {},
+        fun = function () { },
         pipe = function (x) {
             return x;
         },
@@ -435,7 +435,7 @@
         };
 
     R._g = g;
-    
+
     R.type = (g.win.SVGAngle || g.doc.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML");
     if (R.type == "VML") {
         var d = g.doc.createElement("div"),
@@ -448,15 +448,15 @@
         }
         d = null;
     }
-    
-    
+
+
     R.svg = !(R.vml = R.type == "VML");
     R._Paper = Paper;
-    
+
     R.fn = paperproto = Paper.prototype = R.prototype;
     R._id = 0;
     R._oid = 0;
-    
+
     R.is = function (o, type) {
         type = lowerCase.call(type);
         if (type == "finite") {
@@ -465,13 +465,13 @@
         if (type == "array") {
             return o instanceof Array;
         }
-        return  (type == "null" && o === null) ||
-                (type == typeof o) ||
-                (type == "object" && o === Object(o)) ||
-                (type == "array" && Array.isArray && Array.isArray(o)) ||
-                objectToString.call(o).slice(8, -1).toLowerCase() == type;
+        return (type == "null" && o === null) ||
+            (type == typeof o) ||
+            (type == "object" && o === Object(o)) ||
+            (type == "array" && Array.isArray && Array.isArray(o)) ||
+            objectToString.call(o).slice(8, -1).toLowerCase() == type;
     };
-    
+
     R.angle = function (x1, y1, x2, y2, x3, y3) {
         if (x3 == null) {
             var x = x1 - x2,
@@ -484,15 +484,15 @@
             return R.angle(x1, y1, x3, y3) - R.angle(x2, y2, x3, y3);
         }
     };
-    
+
     R.rad = function (deg) {
         return deg % 360 * PI / 180;
     };
-    
+
     R.deg = function (rad) {
         return rad * 180 / PI % 360;
     };
-    
+
     R.snapTo = function (values, value, tolerance) {
         tolerance = R.is(tolerance, "finite") ? tolerance : 10;
         if (R.is(values, array)) {
@@ -512,8 +512,8 @@
         }
         return value;
     };
-    
-    
+
+
     var createUUID = R.createUUID = (function (uuidRegEx, uuidReplacer) {
         return function () {
             return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
@@ -524,7 +524,7 @@
         return v.toString(16);
     });
 
-    
+
     R.setWindow = function (newwin) {
         eve("setWindow", R, g.win, newwin);
         g.win = newwin;
@@ -543,7 +543,7 @@
                 docum.write("<body>");
                 docum.close();
                 bod = docum.body;
-            } catch(e) {
+            } catch (e) {
                 bod = createPopup().document.body;
             }
             var range = bod.createTextRange();
@@ -553,7 +553,7 @@
                     var value = range.queryCommandValue("ForeColor");
                     value = ((value & 255) << 16) | (value & 65280) | ((value & 16711680) >>> 16);
                     return "#" + ("000000" + value.toString(16)).slice(-6);
-                } catch(e) {
+                } catch (e) {
                     return "none";
                 }
             });
@@ -569,51 +569,51 @@
         }
         return toHex(color);
     },
-    hsbtoString = function () {
-        return "hsb(" + [this.h, this.s, this.b] + ")";
-    },
-    hsltoString = function () {
-        return "hsl(" + [this.h, this.s, this.l] + ")";
-    },
-    rgbtoString = function () {
-        return this.hex;
-    },
-    prepareRGB = function (r, g, b) {
-        if (g == null && R.is(r, "object") && "r" in r && "g" in r && "b" in r) {
-            b = r.b;
-            g = r.g;
-            r = r.r;
-        }
-        if (g == null && R.is(r, string)) {
-            var clr = R.getRGB(r);
-            r = clr.r;
-            g = clr.g;
-            b = clr.b;
-        }
-        if (r > 1 || g > 1 || b > 1) {
-            r /= 255;
-            g /= 255;
-            b /= 255;
-        }
-        
-        return [r, g, b];
-    },
-    packageRGB = function (r, g, b, o) {
-        r *= 255;
-        g *= 255;
-        b *= 255;
-        var rgb = {
-            r: r,
-            g: g,
-            b: b,
-            hex: R.rgb(r, g, b),
-            toString: rgbtoString
+        hsbtoString = function () {
+            return "hsb(" + [this.h, this.s, this.b] + ")";
+        },
+        hsltoString = function () {
+            return "hsl(" + [this.h, this.s, this.l] + ")";
+        },
+        rgbtoString = function () {
+            return this.hex;
+        },
+        prepareRGB = function (r, g, b) {
+            if (g == null && R.is(r, "object") && "r" in r && "g" in r && "b" in r) {
+                b = r.b;
+                g = r.g;
+                r = r.r;
+            }
+            if (g == null && R.is(r, string)) {
+                var clr = R.getRGB(r);
+                r = clr.r;
+                g = clr.g;
+                b = clr.b;
+            }
+            if (r > 1 || g > 1 || b > 1) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+            }
+
+            return [r, g, b];
+        },
+        packageRGB = function (r, g, b, o) {
+            r *= 255;
+            g *= 255;
+            b *= 255;
+            var rgb = {
+                r: r,
+                g: g,
+                b: b,
+                hex: R.rgb(r, g, b),
+                toString: rgbtoString
+            };
+            R.is(o, "finite") && (rgb.opacity = o);
+            return rgb;
         };
-        R.is(o, "finite") && (rgb.opacity = o);
-        return rgb;
-    };
-    
-    
+
+
     R.color = function (clr) {
         var rgb;
         if (R.is(clr, "object") && "h" in clr && "s" in clr && "b" in clr) {
@@ -640,14 +640,14 @@
                 rgb = R.rgb2hsb(clr);
                 clr.v = rgb.b;
             } else {
-                clr = {hex: "none"};
+                clr = { hex: "none" };
                 crl.r = clr.g = clr.b = clr.h = clr.s = clr.v = clr.l = -1;
             }
         }
         clr.toString = rgbtoString;
         return clr;
     };
-    
+
     R.hsb2rgb = function (h, s, v, o) {
         if (this.is(h, "object") && "h" in h && "s" in h && "b" in h) {
             v = h.b;
@@ -668,7 +668,7 @@
         B += [0, 0, X, C, C, X][h];
         return packageRGB(R, G, B, o);
     };
-    
+
     R.hsl2rgb = function (h, s, l, o) {
         if (this.is(h, "object") && "h" in h && "s" in h && "l" in h) {
             l = h.l;
@@ -693,7 +693,7 @@
         B += [0, 0, X, C, C, X][h];
         return packageRGB(R, G, B, o);
     };
-    
+
     R.rgb2hsb = function (r, g, b) {
         b = prepareRGB(r, g, b);
         r = b[0];
@@ -704,15 +704,15 @@
         V = mmax(r, g, b);
         C = V - mmin(r, g, b);
         H = (C == 0 ? null :
-             V == r ? (g - b) / C :
-             V == g ? (b - r) / C + 2 :
-                      (r - g) / C + 4
-            );
+            V == r ? (g - b) / C :
+                V == g ? (b - r) / C + 2 :
+                    (r - g) / C + 4
+        );
         H = ((H + 360) % 6) * 60 / 360;
         S = C == 0 ? 0 : C / V;
-        return {h: H, s: S, b: V, toString: hsbtoString};
+        return { h: H, s: S, b: V, toString: hsbtoString };
     };
-    
+
     R.rgb2hsl = function (r, g, b) {
         b = prepareRGB(r, g, b);
         r = b[0];
@@ -724,15 +724,15 @@
         m = mmin(r, g, b);
         C = M - m;
         H = (C == 0 ? null :
-             M == r ? (g - b) / C :
-             M == g ? (b - r) / C + 2 :
-                      (r - g) / C + 4);
+            M == r ? (g - b) / C :
+                M == g ? (b - r) / C + 2 :
+                    (r - g) / C + 4);
         H = ((H + 360) % 6) * 60 / 360;
         L = (M + m) / 2;
         S = (C == 0 ? 0 :
-             L < .5 ? C / (2 * L) :
-                      C / (2 - 2 * L));
-        return {h: H, s: S, l: L, toString: hsltoString};
+            L < .5 ? C / (2 * L) :
+                C / (2 - 2 * L));
+        return { h: H, s: S, l: L, toString: hsltoString };
     };
     R._path2string = function () {
         return this.join(",").replace(p2s, "$1");
@@ -774,18 +774,18 @@
         g.doc.body.appendChild(img);
         img.src = src;
     };
-    
+
     function clrToString() {
         return this.hex;
     }
 
-    
+
     R.getRGB = cacher(function (colour) {
         if (!colour || !!((colour = Str(colour)).indexOf("-") + 1)) {
-            return {r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString};
+            return { r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString };
         }
         if (colour == "none") {
-            return {r: -1, g: -1, b: -1, hex: "none", toString: clrToString};
+            return { r: -1, g: -1, b: -1, hex: "none", toString: clrToString };
         }
         !(hsrg[has](colour.toLowerCase().substring(0, 2)) || colour.charAt() == "#") && (colour = toHex(colour));
         var res,
@@ -844,38 +844,38 @@
                 values[3] && values[3].slice(-1) == "%" && (opacity /= 100);
                 return R.hsl2rgb(red, green, blue, opacity);
             }
-            rgb = {r: red, g: green, b: blue, toString: clrToString};
+            rgb = { r: red, g: green, b: blue, toString: clrToString };
             rgb.hex = "#" + (16777216 | blue | (green << 8) | (red << 16)).toString(16).slice(1);
             R.is(opacity, "finite") && (rgb.opacity = opacity);
             return rgb;
         }
-        return {r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString};
+        return { r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString };
     }, R);
-    
+
     R.hsb = cacher(function (h, s, b) {
         return R.hsb2rgb(h, s, b).hex;
     });
-    
+
     R.hsl = cacher(function (h, s, l) {
         return R.hsl2rgb(h, s, l).hex;
     });
-    
+
     R.rgb = cacher(function (r, g, b) {
         return "#" + (16777216 | b | (g << 8) | (r << 16)).toString(16).slice(1);
     });
-    
+
     R.getColor = function (value) {
-        var start = this.getColor.start = this.getColor.start || {h: 0, s: 1, b: value || .75},
+        var start = this.getColor.start = this.getColor.start || { h: 0, s: 1, b: value || .75 },
             rgb = this.hsb2rgb(start.h, start.s, start.b);
         start.h += .075;
         if (start.h > 1) {
             start.h = 0;
             start.s -= .2;
-            start.s <= 0 && (this.getColor.start = {h: 0, s: 1, b: start.b});
+            start.s <= 0 && (this.getColor.start = { h: 0, s: 1, b: start.b });
         }
         return rgb.hex;
     };
-    
+
     R.getColor.reset = function () {
         delete this.start;
     };
@@ -884,21 +884,21 @@
     function catmullRom2bezier(crp) {
         var d = [];
         for (var i = 0, iLen = crp.length; iLen - 2 > i; i += 2) {
-            var p = [{x: +crp[i],     y: +crp[i + 1]},
-                     {x: +crp[i],     y: +crp[i + 1]},
-                     {x: +crp[i + 2], y: +crp[i + 3]},
-                     {x: +crp[i + 4], y: +crp[i + 5]}];
+            var p = [{ x: +crp[i], y: +crp[i + 1] },
+            { x: +crp[i], y: +crp[i + 1] },
+            { x: +crp[i + 2], y: +crp[i + 3] },
+            { x: +crp[i + 4], y: +crp[i + 5] }];
             if (iLen - 4 == i) {
-                p[0] = {x: +crp[i - 2], y: +crp[i - 1]};
+                p[0] = { x: +crp[i - 2], y: +crp[i - 1] };
                 p[3] = p[2];
             } else if (i) {
-                p[0] = {x: +crp[i - 2], y: +crp[i - 1]};
+                p[0] = { x: +crp[i - 2], y: +crp[i - 1] };
             }
             d.push(["C",
                 (-p[0].x + 6 * p[1].x + p[2].x) / 6,
                 (-p[0].y + 6 * p[1].y + p[2].y) / 6,
                 (p[1].x + 6 * p[2].x - p[3].x) / 6,
-                (p[1].y + 6*p[2].y - p[3].y) / 6,
+                (p[1].y + 6 * p[2].y - p[3].y) / 6,
                 p[2].x,
                 p[2].y
             ]);
@@ -906,12 +906,12 @@
 
         return d;
     }
-    
+
     R.parsePathString = cacher(function (pathString) {
         if (!pathString) {
             return null;
         }
-        var paramCounts = {a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0},
+        var paramCounts = { a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0 },
             data = [];
         if (R.is(pathString, array) && R.is(pathString[0], array)) { // rough assumption
             data = pathClone(pathString);
@@ -941,12 +941,12 @@
         data.toString = R._path2string;
         return data;
     });
-    
+
     R.parseTransformString = cacher(function (TString) {
         if (!TString) {
             return null;
         }
-        var paramCounts = {r: 3, s: 4, t: 2, m: 6},
+        var paramCounts = { r: 3, s: 4, t: 2, m: 6 },
             data = [];
         if (R.is(TString, array) && R.is(TString[0], array)) { // rough assumption
             data = pathClone(TString);
@@ -964,7 +964,7 @@
         data.toString = R._path2string;
         return data;
     });
-    
+
     R.findDotsAtSegment = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
         var t1 = 1 - t,
             t13 = pow(t1, 3),
@@ -986,19 +986,19 @@
         return {
             x: x,
             y: y,
-            m: {x: mx, y: my},
-            n: {x: nx, y: ny},
-            start: {x: ax, y: ay},
-            end: {x: cx, y: cy},
+            m: { x: mx, y: my },
+            n: { x: nx, y: ny },
+            start: { x: ax, y: ay },
+            end: { x: cx, y: cy },
             alpha: alpha
         };
     };
     var pathDimensions = cacher(function (path) {
         if (!path) {
-            return {x: 0, y: 0, width: 0, height: 0};
+            return { x: 0, y: 0, width: 0, height: 0 };
         }
         path = path2curve(path);
-        var x = 0, 
+        var x = 0,
             y = 0,
             X = [],
             Y = [],
@@ -1220,13 +1220,13 @@
             var _13 = 1 / 3,
                 _23 = 2 / 3;
             return [
-                    _13 * x1 + _23 * ax,
-                    _13 * y1 + _23 * ay,
-                    _13 * x2 + _23 * ax,
-                    _13 * y2 + _23 * ay,
-                    x2,
-                    y2
-                ];
+                _13 * x1 + _23 * ax,
+                _13 * y1 + _23 * ay,
+                _13 * x2 + _23 * ax,
+                _13 * y2 + _23 * ay,
+                x2,
+                y2
+            ];
         },
         a2c = function (x1, y1, rx, ry, angle, large_arc_flag, sweep_flag, x2, y2, recursive) {
             // for more information of where this math came from visit:
@@ -1238,7 +1238,7 @@
                 rotate = cacher(function (x, y, rad) {
                     var X = x * math.cos(rad) - y * math.sin(rad),
                         Y = x * math.sin(rad) + y * math.cos(rad);
-                    return {x: X, y: Y};
+                    return { x: X, y: Y };
                 });
             if (!recursive) {
                 xy = rotate(x1, y1, -rad);
@@ -1363,21 +1363,21 @@
                 y.push(dot.y);
             }
             return {
-                min: {x: mmin[apply](0, x), y: mmin[apply](0, y)},
-                max: {x: mmax[apply](0, x), y: mmax[apply](0, y)}
+                min: { x: mmin[apply](0, x), y: mmin[apply](0, y) },
+                max: { x: mmax[apply](0, x), y: mmax[apply](0, y) }
             };
         }),
         path2curve = R._path2curve = cacher(function (path, path2) {
             var p = pathToAbsolute(path),
                 p2 = path2 && pathToAbsolute(path2),
-                attrs = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
-                attrs2 = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
+                attrs = { x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null },
+                attrs2 = { x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null },
                 processPath = function (path, d) {
                     var nx, ny;
                     if (!path) {
                         return ["C", d.x, d.y, d.x, d.y, d.x, d.y];
                     }
-                    !(path[0] in {T:1, Q:1}) && (d.qx = d.qy = null);
+                    !(path[0] in { T: 1, Q: 1 }) && (d.qx = d.qy = null);
                     switch (path[0]) {
                         case "M":
                             d.X = path[1];
@@ -1641,7 +1641,7 @@
                 if ((tt1[0] != tt2[0]) ||
                     (tt1[0] == "r" && (tt1[2] != tt2[2] || tt1[3] != tt2[3])) ||
                     (tt1[0] == "s" && (tt1[3] != tt2[3] || tt1[4] != tt2[4]))
-                    ) {
+                ) {
                     return;
                 }
                 from[i] = [];
@@ -1685,12 +1685,12 @@
             height: h
         };
     };
-    
+
     R.pathToRelative = pathToRelative;
     R._engine = {};
-    
+
     R.path2curve = path2curve;
-    
+
     R.matrix = function (a, b, c, d, e, f) {
         return new Matrix(a, b, c, d, e, f);
     };
@@ -1712,7 +1712,7 @@
         }
     }
     (function (matrixproto) {
-        
+
         matrixproto.add = function (a, b, c, d, e, f) {
             var out = [[], [], []],
                 m = [[this.a, this.c, this.e], [this.b, this.d, this.f], [0, 0, 1]],
@@ -1739,28 +1739,28 @@
             this.e = out[0][2];
             this.f = out[1][2];
         };
-        
+
         matrixproto.invert = function () {
             var me = this,
                 x = me.a * me.d - me.b * me.c;
             return new Matrix(me.d / x, -me.b / x, -me.c / x, me.a / x, (me.c * me.f - me.d * me.e) / x, (me.b * me.e - me.a * me.f) / x);
         };
-        
+
         matrixproto.clone = function () {
             return new Matrix(this.a, this.b, this.c, this.d, this.e, this.f);
         };
-        
+
         matrixproto.translate = function (x, y) {
             this.add(1, 0, 0, 1, x, y);
         };
-        
+
         matrixproto.scale = function (x, y, cx, cy) {
             y == null && (y = x);
             (cx || cy) && this.add(1, 0, 0, 1, cx, cy);
             this.add(x, 0, 0, y, 0, 0);
             (cx || cy) && this.add(1, 0, 0, 1, -cx, -cy);
         };
-        
+
         matrixproto.rotate = function (a, x, y) {
             a = R.rad(a);
             x = x || 0;
@@ -1770,11 +1770,11 @@
             this.add(cos, sin, -sin, cos, x, y);
             this.add(1, 0, 0, 1, -x, -y);
         };
-        
+
         matrixproto.x = function (x, y) {
             return x * this.a + y * this.c + this.e;
         };
-        
+
         matrixproto.y = function (x, y) {
             return x * this.b + y * this.d + this.f;
         };
@@ -1802,7 +1802,7 @@
             a[0] && (a[0] /= mag);
             a[1] && (a[1] /= mag);
         }
-        
+
         matrixproto.split = function () {
             var out = {};
             // translation
@@ -1838,7 +1838,7 @@
             out.noRotation = !+out.shear.toFixed(9) && !out.rotate;
             return out;
         };
-        
+
         matrixproto.toTransformString = function () {
             var s = this.split();
             if (s.isSimple) {
@@ -1853,169 +1853,169 @@
     var version = navigator.userAgent.match(/Version\/(.*?)\s/) || navigator.userAgent.match(/Chrome\/(\d+)/);
     if ((navigator.vendor == "Apple Computer, Inc.") && (version && version[1] < 4 || navigator.platform.slice(0, 2) == "iP") ||
         (navigator.vendor == "Google Inc." && version && version[1] < 8)) {
-        
+
         paperproto.safari = function () {
-            var rect = this.rect(-99, -99, this.width + 99, this.height + 99).attr({stroke: "none"});
-            setTimeout(function () {rect.remove();});
+            var rect = this.rect(-99, -99, this.width + 99, this.height + 99).attr({ stroke: "none" });
+            setTimeout(function () { rect.remove(); });
         };
     } else {
         paperproto.safari = fun;
     }
- 
+
     var preventDefault = function () {
         this.returnValue = false;
     },
-    preventTouch = function () {
-        return this.originalEvent.preventDefault();
-    },
-    stopPropagation = function () {
-        this.cancelBubble = true;
-    },
-    stopTouch = function () {
-        return this.originalEvent.stopPropagation();
-    },
-    addEvent = (function () {
-        if (g.doc.addEventListener) {
-            return function (obj, type, fn, element) {
-                var realName = supportsTouch && touchMap[type] ? touchMap[type] : type,
-                    f = function (e) {
+        preventTouch = function () {
+            return this.originalEvent.preventDefault();
+        },
+        stopPropagation = function () {
+            this.cancelBubble = true;
+        },
+        stopTouch = function () {
+            return this.originalEvent.stopPropagation();
+        },
+        addEvent = (function () {
+            if (g.doc.addEventListener) {
+                return function (obj, type, fn, element) {
+                    var realName = supportsTouch && touchMap[type] ? touchMap[type] : type,
+                        f = function (e) {
+                            var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+                                scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
+                                x = e.clientX + scrollX,
+                                y = e.clientY + scrollY;
+                            if (supportsTouch && touchMap[has](type)) {
+                                for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
+                                    if (e.targetTouches[i].target == obj) {
+                                        var olde = e;
+                                        e = e.targetTouches[i];
+                                        e.originalEvent = olde;
+                                        e.preventDefault = preventTouch;
+                                        e.stopPropagation = stopTouch;
+                                        break;
+                                    }
+                                }
+                            }
+                            return fn.call(element, e, x, y);
+                        };
+                    obj.addEventListener(realName, f, false);
+                    return function () {
+                        obj.removeEventListener(realName, f, false);
+                        return true;
+                    };
+                };
+            } else if (g.doc.attachEvent) {
+                return function (obj, type, fn, element) {
+                    var f = function (e) {
+                        e = e || g.win.event;
                         var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
                             scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
                             x = e.clientX + scrollX,
                             y = e.clientY + scrollY;
-                    if (supportsTouch && touchMap[has](type)) {
-                        for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
-                            if (e.targetTouches[i].target == obj) {
-                                var olde = e;
-                                e = e.targetTouches[i];
-                                e.originalEvent = olde;
-                                e.preventDefault = preventTouch;
-                                e.stopPropagation = stopTouch;
-                                break;
-                            }
+                        e.preventDefault = e.preventDefault || preventDefault;
+                        e.stopPropagation = e.stopPropagation || stopPropagation;
+                        return fn.call(element, e, x, y);
+                    };
+                    obj.attachEvent("on" + type, f);
+                    var detacher = function () {
+                        obj.detachEvent("on" + type, f);
+                        return true;
+                    };
+                    return detacher;
+                };
+            }
+        })(),
+        drag = [],
+        dragMove = function (e) {
+            var x = e.clientX,
+                y = e.clientY,
+                scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
+                scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
+                dragi,
+                j = drag.length;
+            while (j--) {
+                dragi = drag[j];
+                if (supportsTouch) {
+                    var i = e.touches.length,
+                        touch;
+                    while (i--) {
+                        touch = e.touches[i];
+                        if (touch.identifier == dragi.el._drag.id) {
+                            x = touch.clientX;
+                            y = touch.clientY;
+                            (e.originalEvent ? e.originalEvent : e).preventDefault();
+                            break;
                         }
                     }
-                    return fn.call(element, e, x, y);
-                };
-                obj.addEventListener(realName, f, false);
-                return function () {
-                    obj.removeEventListener(realName, f, false);
-                    return true;
-                };
-            };
-        } else if (g.doc.attachEvent) {
-            return function (obj, type, fn, element) {
-                var f = function (e) {
-                    e = e || g.win.event;
-                    var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
-                        scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
-                        x = e.clientX + scrollX,
-                        y = e.clientY + scrollY;
-                    e.preventDefault = e.preventDefault || preventDefault;
-                    e.stopPropagation = e.stopPropagation || stopPropagation;
-                    return fn.call(element, e, x, y);
-                };
-                obj.attachEvent("on" + type, f);
-                var detacher = function () {
-                    obj.detachEvent("on" + type, f);
-                    return true;
-                };
-                return detacher;
-            };
-        }
-    })(),
-    drag = [],
-    dragMove = function (e) {
-        var x = e.clientX,
-            y = e.clientY,
-            scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
-            scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
-            dragi,
-            j = drag.length;
-        while (j--) {
-            dragi = drag[j];
-            if (supportsTouch) {
-                var i = e.touches.length,
-                    touch;
-                while (i--) {
-                    touch = e.touches[i];
-                    if (touch.identifier == dragi.el._drag.id) {
-                        x = touch.clientX;
-                        y = touch.clientY;
-                        (e.originalEvent ? e.originalEvent : e).preventDefault();
-                        break;
-                    }
+                } else {
+                    e.preventDefault();
                 }
-            } else {
-                e.preventDefault();
+                var node = dragi.el.node,
+                    o,
+                    next = node.nextSibling,
+                    parent = node.parentNode,
+                    display = node.style.display;
+                g.win.opera && parent.removeChild(node);
+                node.style.display = "none";
+                o = dragi.el.paper.getElementByPoint(x, y);
+                node.style.display = display;
+                g.win.opera && (next ? parent.insertBefore(node, next) : parent.appendChild(node));
+                o && eve("drag.over." + dragi.el.id, dragi.el, o);
+                x += scrollX;
+                y += scrollY;
+                eve("drag.move." + dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
             }
-            var node = dragi.el.node,
-                o,
-                next = node.nextSibling,
-                parent = node.parentNode,
-                display = node.style.display;
-            g.win.opera && parent.removeChild(node);
-            node.style.display = "none";
-            o = dragi.el.paper.getElementByPoint(x, y);
-            node.style.display = display;
-            g.win.opera && (next ? parent.insertBefore(node, next) : parent.appendChild(node));
-            o && eve("drag.over." + dragi.el.id, dragi.el, o);
-            x += scrollX;
-            y += scrollY;
-            eve("drag.move." + dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
-        }
-    },
-    dragUp = function (e) {
-        R.unmousemove(dragMove).unmouseup(dragUp);
-        var i = drag.length,
-            dragi;
-        while (i--) {
-            dragi = drag[i];
-            dragi.el._drag = {};
-            eve("drag.end." + dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
-        }
-        drag = [];
-    },
-    
-    elproto = R.el = {};
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        },
+        dragUp = function (e) {
+            R.unmousemove(dragMove).unmouseup(dragUp);
+            var i = drag.length,
+                dragi;
+            while (i--) {
+                dragi = drag[i];
+                dragi.el._drag = {};
+                eve("drag.end." + dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
+            }
+            drag = [];
+        },
+
+        elproto = R.el = {};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     for (var i = events.length; i--;) {
         (function (eventName) {
             R[eventName] = elproto[eventName] = function (fn, scope) {
                 if (R.is(fn, "function")) {
                     this.events = this.events || [];
-                    this.events.push({name: eventName, f: fn, unbind: addEvent(this.shape || this.node || g.doc, eventName, fn, scope || this)});
+                    this.events.push({ name: eventName, f: fn, unbind: addEvent(this.shape || this.node || g.doc, eventName, fn, scope || this) });
                 }
                 return this;
             };
@@ -2032,8 +2032,8 @@
             };
         })(events[i]);
     }
-    
-    
+
+
     elproto.data = function (key, value) {
         var data = eldata[this.id] = eldata[this.id] || {};
         if (arguments.length == 1) {
@@ -2050,7 +2050,7 @@
         eve("data.set." + this.id, this, value, key);
         return this;
     };
-    
+
     elproto.removeData = function (key) {
         if (key == null) {
             eldata[this.id] = {};
@@ -2059,15 +2059,15 @@
         }
         return this;
     };
-    
+
     elproto.hover = function (f_in, f_out, scope_in, scope_out) {
         return this.mouseover(f_in, scope_in).mouseout(f_out, scope_out || scope_in);
     };
-    
+
     elproto.unhover = function (f_in, f_out) {
         return this.unmouseover(f_in).unmouseout(f_out);
     };
-    
+
     elproto.drag = function (onmove, onstart, onend, move_scope, start_scope, end_scope) {
         function start(e) {
             (e.originalEvent || e).preventDefault();
@@ -2077,7 +2077,7 @@
             this._drag.y = e.clientY + scrollY;
             this._drag.id = e.identifier;
             !drag.length && R.mousemove(dragMove).mouseup(dragUp);
-            drag.push({el: this, move_scope: move_scope, start_scope: start_scope, end_scope: end_scope});
+            drag.push({ el: this, move_scope: move_scope, start_scope: start_scope, end_scope: end_scope });
             onstart && eve.on("drag.start." + this.id, onstart);
             onmove && eve.on("drag.move." + this.id, onmove);
             onend && eve.on("drag.end." + this.id, onend);
@@ -2087,11 +2087,11 @@
         this.mousedown(start);
         return this;
     };
-    
+
     elproto.onDragOver = function (f) {
         f ? eve.on("drag.over." + this.id, f) : eve.unbind("drag.over." + this.id);
     };
-    
+
     elproto.undrag = function () {
         var i = drag.length;
         while (i--) if (drag[i].el == this) {
@@ -2101,72 +2101,72 @@
         }
         !drag.length && R.unmousemove(dragMove).unmouseup(dragUp);
     };
-    
+
     paperproto.circle = function (x, y, r) {
         var out = R._engine.circle(this, x || 0, y || 0, r || 0);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.rect = function (x, y, w, h, r) {
         var out = R._engine.rect(this, x || 0, y || 0, w || 0, h || 0, r || 0);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.ellipse = function (x, y, rx, ry) {
         var out = R._engine.ellipse(this, x || 0, y || 0, rx || 0, ry || 0);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.path = function (pathString) {
         pathString && !R.is(pathString, string) && !R.is(pathString[0], array) && (pathString += E);
         var out = R._engine.path(R.format[apply](R, arguments), this);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.image = function (src, x, y, w, h) {
         var out = R._engine.image(this, src || "about:blank", x || 0, y || 0, w || 0, h || 0);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.text = function (x, y, text) {
         var out = R._engine.text(this, x || 0, y || 0, Str(text));
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.set = function (itemsArray) {
         !R.is(itemsArray, "array") && (itemsArray = Array.prototype.splice.call(arguments, 0, arguments.length));
         var out = new Set(itemsArray);
         this.__set__ && this.__set__.push(out);
         return out;
     };
-    
+
     paperproto.setStart = function (set) {
         this.__set__ = set || this.set();
     };
-    
+
     paperproto.setFinish = function (set) {
         var out = this.__set__;
         delete this.__set__;
         return out;
     };
-    
+
     paperproto.setSize = function (width, height) {
         return R._engine.setSize.call(this, width, height);
     };
-    
+
     paperproto.setViewBox = function (x, y, w, h, fit) {
         return R._engine.setViewBox.call(this, x, y, w, h, fit);
     };
-    
-    
+
+
     paperproto.top = paperproto.bottom = null;
-    
+
     paperproto.raphael = R;
     var getOffset = function (elem) {
         var box = elem.getBoundingClientRect(),
@@ -2174,14 +2174,14 @@
             body = doc.body,
             docElem = doc.documentElement,
             clientTop = docElem.clientTop || body.clientTop || 0, clientLeft = docElem.clientLeft || body.clientLeft || 0,
-            top  = box.top  + (g.win.pageYOffset || docElem.scrollTop || body.scrollTop ) - clientTop,
+            top = box.top + (g.win.pageYOffset || docElem.scrollTop || body.scrollTop) - clientTop,
             left = box.left + (g.win.pageXOffset || docElem.scrollLeft || body.scrollLeft) - clientLeft;
         return {
             y: top,
             x: left
         };
     };
-    
+
     paperproto.getElementByPoint = function (x, y) {
         var paper = this,
             svg = paper.canvas,
@@ -2207,7 +2207,7 @@
         target = target && target.raphael ? paper.getById(target.raphaelid) : null;
         return target;
     };
-    
+
     paperproto.getById = function (id) {
         var bot = this.bottom;
         while (bot) {
@@ -2218,7 +2218,7 @@
         }
         return null;
     };
-    
+
     paperproto.forEach = function (callback, thisArg) {
         var bot = this.bottom;
         while (bot) {
@@ -2235,7 +2235,7 @@
     function x_y_w_h() {
         return this.x + S + this.y + S + this.width + " \xd7 " + this.height;
     }
-    
+
     elproto.getBBox = function (isWithoutTransform) {
         if (this.removed) {
             return {};
@@ -2261,14 +2261,14 @@
         }
         return _.bbox;
     };
-    
+
     elproto.clone = function () {
         if (this.removed) {
             return null;
         }
         return this.paper[this.type]().attr(this.attr());
     };
-    
+
     elproto.glow = function (glow) {
         if (this.type == "text") {
             return null;
@@ -2300,87 +2300,87 @@
         return out.insertBefore(this).translate(s.offsetx, s.offsety);
     };
     var curveslengths = {},
-    getPointAtSegmentLength = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, length) {
-        var len = 0,
-            precision = 100,
-            name = [p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y].join(),
-            cache = curveslengths[name],
-            old, dot;
-        !cache && (curveslengths[name] = cache = {data: []});
-        cache.timer && clearTimeout(cache.timer);
-        cache.timer = setTimeout(function () {delete curveslengths[name];}, 2e3);
-        if (length != null && !cache.precision) {
-            var total = getPointAtSegmentLength(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y);
-            cache.precision = ~~total * 10;
-            cache.data = [];
-        }
-        precision = cache.precision || precision;
-        for (var i = 0; i < precision + 1; i++) {
-            if (cache.data[i * precision]) {
-                dot = cache.data[i * precision];
-            } else {
-                dot = R.findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, i / precision);
-                cache.data[i * precision] = dot;
+        getPointAtSegmentLength = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, length) {
+            var len = 0,
+                precision = 100,
+                name = [p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y].join(),
+                cache = curveslengths[name],
+                old, dot;
+            !cache && (curveslengths[name] = cache = { data: [] });
+            cache.timer && clearTimeout(cache.timer);
+            cache.timer = setTimeout(function () { delete curveslengths[name]; }, 2e3);
+            if (length != null && !cache.precision) {
+                var total = getPointAtSegmentLength(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y);
+                cache.precision = ~~total * 10;
+                cache.data = [];
             }
-            i && (len += pow(pow(old.x - dot.x, 2) + pow(old.y - dot.y, 2), .5));
-            if (length != null && len >= length) {
-                return dot;
-            }
-            old = dot;
-        }
-        if (length == null) {
-            return len;
-        }
-    },
-    getLengthFactory = function (istotal, subpath) {
-        return function (path, length, onlystart) {
-            path = path2curve(path);
-            var x, y, p, l, sp = "", subpaths = {}, point,
-                len = 0;
-            for (var i = 0, ii = path.length; i < ii; i++) {
-                p = path[i];
-                if (p[0] == "M") {
-                    x = +p[1];
-                    y = +p[2];
+            precision = cache.precision || precision;
+            for (var i = 0; i < precision + 1; i++) {
+                if (cache.data[i * precision]) {
+                    dot = cache.data[i * precision];
                 } else {
-                    l = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6]);
-                    if (len + l > length) {
-                        if (subpath && !subpaths.start) {
-                            point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
-                            sp += ["C" + point.start.x, point.start.y, point.m.x, point.m.y, point.x, point.y];
-                            if (onlystart) {return sp;}
-                            subpaths.start = sp;
-                            sp = ["M" + point.x, point.y + "C" + point.n.x, point.n.y, point.end.x, point.end.y, p[5], p[6]].join();
-                            len += l;
-                            x = +p[5];
-                            y = +p[6];
-                            continue;
-                        }
-                        if (!istotal && !subpath) {
-                            point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
-                            return {x: point.x, y: point.y, alpha: point.alpha};
-                        }
-                    }
-                    len += l;
-                    x = +p[5];
-                    y = +p[6];
+                    dot = R.findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, i / precision);
+                    cache.data[i * precision] = dot;
                 }
-                sp += p.shift() + p;
+                i && (len += pow(pow(old.x - dot.x, 2) + pow(old.y - dot.y, 2), .5));
+                if (length != null && len >= length) {
+                    return dot;
+                }
+                old = dot;
             }
-            subpaths.end = sp;
-            point = istotal ? len : subpath ? subpaths : R.findDotsAtSegment(x, y, p[0], p[1], p[2], p[3], p[4], p[5], 1);
-            point.alpha && (point = {x: point.x, y: point.y, alpha: point.alpha});
-            return point;
+            if (length == null) {
+                return len;
+            }
+        },
+        getLengthFactory = function (istotal, subpath) {
+            return function (path, length, onlystart) {
+                path = path2curve(path);
+                var x, y, p, l, sp = "", subpaths = {}, point,
+                    len = 0;
+                for (var i = 0, ii = path.length; i < ii; i++) {
+                    p = path[i];
+                    if (p[0] == "M") {
+                        x = +p[1];
+                        y = +p[2];
+                    } else {
+                        l = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6]);
+                        if (len + l > length) {
+                            if (subpath && !subpaths.start) {
+                                point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
+                                sp += ["C" + point.start.x, point.start.y, point.m.x, point.m.y, point.x, point.y];
+                                if (onlystart) { return sp; }
+                                subpaths.start = sp;
+                                sp = ["M" + point.x, point.y + "C" + point.n.x, point.n.y, point.end.x, point.end.y, p[5], p[6]].join();
+                                len += l;
+                                x = +p[5];
+                                y = +p[6];
+                                continue;
+                            }
+                            if (!istotal && !subpath) {
+                                point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
+                                return { x: point.x, y: point.y, alpha: point.alpha };
+                            }
+                        }
+                        len += l;
+                        x = +p[5];
+                        y = +p[6];
+                    }
+                    sp += p.shift() + p;
+                }
+                subpaths.end = sp;
+                point = istotal ? len : subpath ? subpaths : R.findDotsAtSegment(x, y, p[0], p[1], p[2], p[3], p[4], p[5], 1);
+                point.alpha && (point = { x: point.x, y: point.y, alpha: point.alpha });
+                return point;
+            };
         };
-    };
     var getTotalLength = getLengthFactory(1),
         getPointAtLength = getLengthFactory(),
         getSubpathsAtLength = getLengthFactory(0, 1);
-    
+
     R.getTotalLength = getTotalLength;
-    
+
     R.getPointAtLength = getPointAtLength;
-    
+
     R.getSubpath = function (path, from, to) {
         if (this.getTotalLength(path) - to < 1e-6) {
             return getSubpathsAtLength(path, from).end;
@@ -2388,25 +2388,25 @@
         var a = getSubpathsAtLength(path, to, 1);
         return from ? getSubpathsAtLength(a, from).end : a;
     };
-    
+
     elproto.getTotalLength = function () {
-        if (this.type != "path") {return;}
+        if (this.type != "path") { return; }
         if (this.node.getTotalLength) {
             return this.node.getTotalLength();
         }
         return getTotalLength(this.attrs.path);
     };
-    
+
     elproto.getPointAtLength = function (length) {
-        if (this.type != "path") {return;}
+        if (this.type != "path") { return; }
         return getPointAtLength(this.attrs.path, length);
     };
-    
+
     elproto.getSubpath = function (from, to) {
-        if (this.type != "path") {return;}
+        if (this.type != "path") { return; }
         return R.getSubpath(this.attrs.path, from, to);
     };
-    
+
     var ef = R.easing_formulas = {
         linear: function (n) {
             return n;
@@ -2472,14 +2472,14 @@
     ef["back-out"] = ef.backOut;
 
     var animationElements = [],
-        requestAnimFrame = window.requestAnimationFrame       ||
-                           window.webkitRequestAnimationFrame ||
-                           window.mozRequestAnimationFrame    ||
-                           window.oRequestAnimationFrame      ||
-                           window.msRequestAnimationFrame     ||
-                           function (callback) {
-                               setTimeout(callback, 16);
-                           },
+        requestAnimFrame = window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                setTimeout(callback, 16);
+            },
         animation = function () {
             var Now = +new Date,
                 l = 0;
@@ -2578,8 +2578,8 @@
                         });
                     })(that.id, that, e.anim);
                 } else {
-                    (function(f, el, a) {
-                        setTimeout(function() {
+                    (function (f, el, a) {
+                        setTimeout(function () {
                             eve("anim.frame." + el.id, el, a);
                             eve("anim.finish." + el.id, el, a);
                             R.is(f, "function") && f.call(el);
@@ -2601,10 +2601,10 @@
         upto255 = function (color) {
             return color > 255 ? 255 : color < 0 ? 0 : color;
         };
-    
+
     elproto.animateWith = function (element, anim, params, ms, easing, callback) {
         var a = params ? R.animation(params, ms, easing, callback) : anim;
-            status = element.status(anim);
+        status = element.status(anim);
         return this.animate(a).status(a, status * anim.ms / a.ms);
     };
     function CubicBezierAtTime(t, p1x, p1y, p2x, p2y, duration) {
@@ -2623,7 +2623,7 @@
         }
         function solveCurveX(x, epsilon) {
             var t0, t1, t2, x2, d2, i;
-            for(t2 = x, i = 0; i < 8; i++) {
+            for (t2 = x, i = 0; i < 8; i++) {
                 x2 = sampleCurveX(t2) - x;
                 if (abs(x2) < epsilon) {
                     return t2;
@@ -2679,15 +2679,15 @@
         this.top = percents[percents.length - 1];
         this.percents = percents;
     }
-    
+
     Animation.prototype.delay = function (delay) {
         var a = new Animation(this.anim, this.ms);
         a.times = this.times;
         a.del = +delay || 0;
         return a;
     };
-    
-    Animation.prototype.repeat = function (times) { 
+
+    Animation.prototype.repeat = function (times) {
         var a = new Animation(this.anim, this.ms);
         a.del = this.del;
         a.times = math.floor(mmax(times, 0)) || 1;
@@ -2786,7 +2786,7 @@
                             } else {
                                 var m = (element.matrix || new Matrix),
                                     to2 = {
-                                        _: {transform: _.transform},
+                                        _: { transform: _.transform },
                                         getBBox: function () {
                                             return element.getBBox(1);
                                         }
@@ -2899,7 +2899,7 @@
         }
         eve("anim.start." + element.id, element, anim);
     }
-    
+
     R.animation = function (params, ms, easing, callback) {
         if (params instanceof Animation) {
             return params;
@@ -2922,10 +2922,10 @@
         } else {
             easing && (p.easing = easing);
             callback && (p.callback = callback);
-            return new Animation({100: p}, ms);
+            return new Animation({ 100: p }, ms);
         }
     };
-    
+
     elproto.animate = function (params, ms, easing, callback) {
         var element = this;
         if (element.removed) {
@@ -2936,14 +2936,14 @@
         runAnimation(anim, element, anim.percents[0], null, element.attr());
         return element;
     };
-    
+
     elproto.setTime = function (anim, value) {
         if (anim && value != null) {
             this.status(anim, mmin(value, anim.ms) / anim.ms);
         }
         return this;
     };
-    
+
     elproto.status = function (anim, value) {
         var out = [],
             i = 0,
@@ -2972,7 +2972,7 @@
             return out;
         }
     };
-    
+
     elproto.pause = function (anim) {
         for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
             if (eve("anim.pause." + this.id, this, animationElements[i].anim) !== false) {
@@ -2981,7 +2981,7 @@
         }
         return this;
     };
-    
+
     elproto.resume = function (anim) {
         for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
             var e = animationElements[i];
@@ -2992,7 +2992,7 @@
         }
         return this;
     };
-    
+
     elproto.stop = function (anim) {
         for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
             if (eve("anim.stop." + this.id, this, animationElements[i].anim) !== false) {
@@ -3019,8 +3019,8 @@
             }
         }
     },
-    setproto = Set.prototype;
-    
+        setproto = Set.prototype;
+
     setproto.push = function () {
         var item,
             len;
@@ -3034,12 +3034,12 @@
         }
         return this;
     };
-    
+
     setproto.pop = function () {
         this.length && delete this[this.length--];
         return this.items.pop();
     };
-    
+
     setproto.forEach = function (callback, thisArg) {
         for (var i = 0, ii = this.items.length; i < ii; i++) {
             if (callback.call(thisArg, this.items[i]) === false) {
@@ -3070,13 +3070,13 @@
         }
         return this;
     };
-    
+
     setproto.clear = function () {
         while (this.length) {
             this.pop();
         }
     };
-    
+
     setproto.splice = function (index, count, insertion) {
         index = index < 0 ? mmax(this.length + index, 0) : index;
         count = mmax(0, mmin(this.length - index, count));
@@ -3103,7 +3103,7 @@
         }
         return new Set(todel);
     };
-    
+
     setproto.exclude = function (el) {
         for (var i = 0, ii = this.length, found; i < ii; i++) if (found || this[i] == el) {
             this[i] = this[i + 1];
@@ -3175,17 +3175,17 @@
         return "Rapha\xebl\u2018s set";
     };
 
-    
+
     R.registerFont = function (font) {
         if (!font.face) {
             return font;
         }
         this.fonts = this.fonts || {};
         var fontcopy = {
-                w: font.w,
-                face: {},
-                glyphs: {}
-            },
+            w: font.w,
+            face: {},
+            glyphs: {}
+        },
             family = font.face["font-family"];
         for (var prop in font.face) if (font.face[has](prop)) {
             fontcopy.face[prop] = font.face[prop];
@@ -3203,8 +3203,8 @@
                     w: path.w,
                     k: {},
                     d: path.d && "M" + path.d.replace(/[mlcxtrv]/g, function (command) {
-                            return {l: "L", c: "C", x: "z", t: "m", r: "l", v: "c"}[command] || "M";
-                        }) + "z"
+                        return { l: "L", c: "C", x: "z", t: "m", r: "l", v: "c" }[command] || "M";
+                    }) + "z"
                 };
                 if (path.k) {
                     for (var k in path.k) if (path[has](k)) {
@@ -3215,11 +3215,11 @@
         }
         return font;
     };
-    
+
     paperproto.getFont = function (family, weight, style, stretch) {
         stretch = stretch || "normal";
         style = style || "normal";
-        weight = +weight || {normal: 400, bold: 700, lighter: 300, bolder: 800}[weight] || 400;
+        weight = +weight || { normal: 400, bold: 700, lighter: 300, bolder: 800 }[weight] || 400;
         if (!R.fonts) {
             return;
         }
@@ -3244,7 +3244,7 @@
         }
         return thefont;
     };
-    
+
     paperproto.print = function (x, y, string, font, size, origin, letter_spacing) {
         origin = origin || "middle"; // baseline|middle
         letter_spacing = mmax(mmin(letter_spacing || 0, 1), -1);
@@ -3274,7 +3274,7 @@
         return out;
     };
 
-    
+
     R.format = function (token, params) {
         var args = R.is(params, array) ? [0][concat](params) : arguments;
         token && R.is(token, string) && args.length - 1 && (token = token.replace(formatrg, function (str, i) {
@@ -3282,7 +3282,7 @@
         }));
         return token || E;
     };
-    
+
     R.fullfill = (function () {
         var tokenRegex = /\{([^\}]+)\}/g,
             objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
@@ -3306,16 +3306,16 @@
             });
         };
     })();
-    
+
     R.ninja = function () {
         oldRaphael.was ? (g.win.Raphael = oldRaphael.is) : delete Raphael;
         return R;
     };
-    
+
     R.st = setproto;
     // Firefox <3.6 fix: http://webreflection.blogspot.com/2009/11/195-chars-to-help-lazy-loading.html
     (function (doc, loaded, f) {
-        if (doc.readyState == null && doc.addEventListener){
+        if (doc.readyState == null && doc.addEventListener) {
             doc.addEventListener(loaded, f = function () {
                 doc.removeEventListener(loaded, f, false);
                 doc.readyState = "complete";
@@ -3329,7 +3329,7 @@
     })(document, "DOMContentLoaded");
 
     oldRaphael.was ? (g.win.Raphael = R) : (Raphael = R);
-    
+
     eve.on("DOMload", function () {
         loaded = true;
     });
@@ -3367,7 +3367,7 @@ window.Raphael.svg && function (R) {
         },
         markerCounter = {};
     R.toString = function () {
-        return  "Your browser supports SVG.\nYou are running Rapha\xebl " + this.version;
+        return "Your browser supports SVG.\nYou are running Rapha\xebl " + this.version;
     };
     var $ = function (el, attr) {
         if (attr) {
@@ -3387,585 +3387,585 @@ window.Raphael.svg && function (R) {
         }
         return el;
     },
-    gradients = {},
-    rgGrad = /^url\(#(.*)\)$/,
-    removeGradientFill = function (node, paper) {
-        var oid = node.getAttribute("fill");
-        oid = oid && oid.match(rgGrad);
-        if (oid && !--gradients[oid[1]]) {
-            delete gradients[oid[1]];
-            paper.defs.removeChild(R._g.doc.getElementById(oid[1]));
-        }
-    },
-    addGradientFill = function (element, gradient) {
-        var type = "linear",
-            id = element.id + gradient,
-            fx = .5, fy = .5,
-            o = element.node,
-            SVG = element.paper,
-            s = o.style,
-            el = R._g.doc.getElementById(id);
-        if (!el) {
-            gradient = Str(gradient).replace(R._radial_gradient, function (all, _fx, _fy) {
-                type = "radial";
-                if (_fx && _fy) {
-                    fx = toFloat(_fx);
-                    fy = toFloat(_fy);
-                    var dir = ((fy > .5) * 2 - 1);
-                    pow(fx - .5, 2) + pow(fy - .5, 2) > .25 &&
-                        (fy = math.sqrt(.25 - pow(fx - .5, 2)) * dir + .5) &&
-                        fy != .5 &&
-                        (fy = fy.toFixed(5) - 1e-5 * dir);
+        gradients = {},
+        rgGrad = /^url\(#(.*)\)$/,
+        removeGradientFill = function (node, paper) {
+            var oid = node.getAttribute("fill");
+            oid = oid && oid.match(rgGrad);
+            if (oid && !--gradients[oid[1]]) {
+                delete gradients[oid[1]];
+                paper.defs.removeChild(R._g.doc.getElementById(oid[1]));
+            }
+        },
+        addGradientFill = function (element, gradient) {
+            var type = "linear",
+                id = element.id + gradient,
+                fx = .5, fy = .5,
+                o = element.node,
+                SVG = element.paper,
+                s = o.style,
+                el = R._g.doc.getElementById(id);
+            if (!el) {
+                gradient = Str(gradient).replace(R._radial_gradient, function (all, _fx, _fy) {
+                    type = "radial";
+                    if (_fx && _fy) {
+                        fx = toFloat(_fx);
+                        fy = toFloat(_fy);
+                        var dir = ((fy > .5) * 2 - 1);
+                        pow(fx - .5, 2) + pow(fy - .5, 2) > .25 &&
+                            (fy = math.sqrt(.25 - pow(fx - .5, 2)) * dir + .5) &&
+                            fy != .5 &&
+                            (fy = fy.toFixed(5) - 1e-5 * dir);
+                    }
+                    return E;
+                });
+                gradient = gradient.split(/\s*\-\s*/);
+                if (type == "linear") {
+                    var angle = gradient.shift();
+                    angle = -toFloat(angle);
+                    if (isNaN(angle)) {
+                        return null;
+                    }
+                    var vector = [0, 0, math.cos(R.rad(angle)), math.sin(R.rad(angle))],
+                        max = 1 / (mmax(abs(vector[2]), abs(vector[3])) || 1);
+                    vector[2] *= max;
+                    vector[3] *= max;
+                    if (vector[2] < 0) {
+                        vector[0] = -vector[2];
+                        vector[2] = 0;
+                    }
+                    if (vector[3] < 0) {
+                        vector[1] = -vector[3];
+                        vector[3] = 0;
+                    }
                 }
-                return E;
-            });
-            gradient = gradient.split(/\s*\-\s*/);
-            if (type == "linear") {
-                var angle = gradient.shift();
-                angle = -toFloat(angle);
-                if (isNaN(angle)) {
+                var dots = R._parseDots(gradient);
+                if (!dots) {
                     return null;
                 }
-                var vector = [0, 0, math.cos(R.rad(angle)), math.sin(R.rad(angle))],
-                    max = 1 / (mmax(abs(vector[2]), abs(vector[3])) || 1);
-                vector[2] *= max;
-                vector[3] *= max;
-                if (vector[2] < 0) {
-                    vector[0] = -vector[2];
-                    vector[2] = 0;
+                if (element.gradient) {
+                    SVG.defs.removeChild(element.gradient);
+                    delete element.gradient;
                 }
-                if (vector[3] < 0) {
-                    vector[1] = -vector[3];
-                    vector[3] = 0;
-                }
-            }
-            var dots = R._parseDots(gradient);
-            if (!dots) {
-                return null;
-            }
-            if (element.gradient) {
-                SVG.defs.removeChild(element.gradient);
-                delete element.gradient;
-            }
 
-            id = id.replace(/[\(\)\s,\xb0#]/g, "-");
-            el = $(type + "Gradient", {id: id});
-            element.gradient = el;
-            $(el, type == "radial" ? {
-                fx: fx,
-                fy: fy
-            } : {
-                x1: vector[0],
-                y1: vector[1],
-                x2: vector[2],
-                y2: vector[3],
-                gradientTransform: element.matrix.invert()
-            });
-            SVG.defs.appendChild(el);
-            for (var i = 0, ii = dots.length; i < ii; i++) {
-                el.appendChild($("stop", {
-                    offset: dots[i].offset ? dots[i].offset : i ? "100%" : "0%",
-                    "stop-color": dots[i].color || "#fff"
-                }));
-            }
-        }
-        $(o, {
-            fill: "url(#" + id + ")",
-            opacity: 1,
-            "fill-opacity": 1
-        });
-        s.fill = E;
-        s.opacity = 1;
-        s.fillOpacity = 1;
-        return 1;
-    },
-    updatePosition = function (o) {
-        var bbox = o.getBBox(1);
-        $(o.pattern, {patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")"});
-    },
-    addArrow = function (o, value, isEnd) {
-        if (o.type == "path") {
-            var values = Str(value).toLowerCase().split("-"),
-                p = o.paper,
-                se = isEnd ? "end" : "start",
-                node = o.node,
-                attrs = o.attrs,
-                stroke = attrs["stroke-width"],
-                i = values.length,
-                type = "classic",
-                from,
-                to,
-                dx,
-                refX,
-                attr,
-                w = 3,
-                h = 3,
-                t = 5;
-            while (i--) {
-                switch (values[i]) {
-                    case "block":
-                    case "classic":
-                    case "oval":
-                    case "diamond":
-                    case "open":
-                    case "none":
-                        type = values[i];
-                        break;
-                    case "wide": h = 5; break;
-                    case "narrow": h = 2; break;
-                    case "long": w = 5; break;
-                    case "short": w = 2; break;
-                }
-            }
-            if (type == "open") {
-                w += 2;
-                h += 2;
-                t += 2;
-                dx = 1;
-                refX = isEnd ? 4 : 1;
-                attr = {
-                    fill: "none",
-                    stroke: attrs.stroke
-                };
-            } else {
-                refX = dx = w / 2;
-                attr = {
-                    fill: attrs.stroke,
-                    stroke: "none"
-                };
-            }
-            if (o._.arrows) {
-                if (isEnd) {
-                    o._.arrows.endPath && markerCounter[o._.arrows.endPath]--;
-                    o._.arrows.endMarker && markerCounter[o._.arrows.endMarker]--;
-                } else {
-                    o._.arrows.startPath && markerCounter[o._.arrows.startPath]--;
-                    o._.arrows.startMarker && markerCounter[o._.arrows.startMarker]--;
-                }
-            } else {
-                o._.arrows = {};
-            }
-            if (type != "none") {
-                var pathId = "raphael-marker-" + type,
-                    markerId = "raphael-marker-" + se + type + w + h;
-                if (!R._g.doc.getElementById(pathId)) {
-                    p.defs.appendChild($($("path"), {
-                        "stroke-linecap": "round",
-                        d: markers[type],
-                        id: pathId
+                id = id.replace(/[\(\)\s,\xb0#]/g, "-");
+                el = $(type + "Gradient", { id: id });
+                element.gradient = el;
+                $(el, type == "radial" ? {
+                    fx: fx,
+                    fy: fy
+                } : {
+                        x1: vector[0],
+                        y1: vector[1],
+                        x2: vector[2],
+                        y2: vector[3],
+                        gradientTransform: element.matrix.invert()
+                    });
+                SVG.defs.appendChild(el);
+                for (var i = 0, ii = dots.length; i < ii; i++) {
+                    el.appendChild($("stop", {
+                        offset: dots[i].offset ? dots[i].offset : i ? "100%" : "0%",
+                        "stop-color": dots[i].color || "#fff"
                     }));
-                    markerCounter[pathId] = 1;
-                } else {
-                    markerCounter[pathId]++;
                 }
-                var marker = R._g.doc.getElementById(markerId),
-                    use;
-                if (!marker) {
-                    marker = $($("marker"), {
-                        id: markerId,
-                        markerHeight: h,
-                        markerWidth: w,
-                        orient: "auto",
-                        refX: refX,
-                        refY: h / 2
-                    });
-                    use = $($("use"), {
-                        "xlink:href": "#" + pathId,
-                        transform: (isEnd ? " rotate(180 " + w / 2 + " " + h / 2 + ") " : S) + "scale(" + w / t + "," + h / t + ")",
-                        "stroke-width": 1 / ((w / t + h / t) / 2)
-                    });
-                    marker.appendChild(use);
-                    p.defs.appendChild(marker);
-                    markerCounter[markerId] = 1;
-                } else {
-                    markerCounter[markerId]++;
-                    use = marker.getElementsByTagName("use")[0];
-                }
-                $(use, attr);
-                var delta = dx * (type != "diamond" && type != "oval");
-                if (isEnd) {
-                    from = o._.arrows.startdx * stroke || 0;
-                    to = R.getTotalLength(attrs.path) - delta * stroke;
-                } else {
-                    from = delta * stroke;
-                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
-                }
-                attr = {};
-                attr["marker-" + se] = "url(#" + markerId + ")";
-                if (to || from) {
-                    attr.d = Raphael.getSubpath(attrs.path, from, to);
-                }
-                $(node, attr);
-                o._.arrows[se + "Path"] = pathId;
-                o._.arrows[se + "Marker"] = markerId;
-                o._.arrows[se + "dx"] = delta;
-                o._.arrows[se + "Type"] = type;
-                o._.arrows[se + "String"] = value;
-            } else {
-                if (isEnd) {
-                    from = o._.arrows.startdx * stroke || 0;
-                    to = R.getTotalLength(attrs.path) - from;
-                } else {
-                    from = 0;
-                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
-                }
-                o._.arrows[se + "Path"] && $(node, {d: Raphael.getSubpath(attrs.path, from, to)});
-                delete o._.arrows[se + "Path"];
-                delete o._.arrows[se + "Marker"];
-                delete o._.arrows[se + "dx"];
-                delete o._.arrows[se + "Type"];
-                delete o._.arrows[se + "String"];
             }
-            for (attr in markerCounter) if (markerCounter[has](attr) && !markerCounter[attr]) {
-                var item = R._g.doc.getElementById(attr);
-                item && item.parentNode.removeChild(item);
-            }
-        }
-    },
-    dasharray = {
-        "": [0],
-        "none": [0],
-        "-": [3, 1],
-        ".": [1, 1],
-        "-.": [3, 1, 1, 1],
-        "-..": [3, 1, 1, 1, 1, 1],
-        ". ": [1, 3],
-        "- ": [4, 3],
-        "--": [8, 3],
-        "- .": [4, 3, 1, 3],
-        "--.": [8, 3, 1, 3],
-        "--..": [8, 3, 1, 3, 1, 3]
-    },
-    addDashes = function (o, value, params) {
-        value = dasharray[Str(value).toLowerCase()];
-        if (value) {
-            var width = o.attrs["stroke-width"] || "1",
-                butt = {round: width, square: width, butt: 0}[o.attrs["stroke-linecap"] || params["stroke-linecap"]] || 0,
-                dashes = [],
-                i = value.length;
-            while (i--) {
-                dashes[i] = value[i] * width + ((i % 2) ? 1 : -1) * butt;
-            }
-            $(o.node, {"stroke-dasharray": dashes.join(",")});
-        }
-    },
-    setFillAndStroke = function (o, params) {
-        var node = o.node,
-            attrs = o.attrs,
-            vis = node.style.visibility;
-        node.style.visibility = "hidden";
-        for (var att in params) {
-            if (params[has](att)) {
-                if (!R._availableAttrs[has](att)) {
-                    continue;
+            $(o, {
+                fill: "url(#" + id + ")",
+                opacity: 1,
+                "fill-opacity": 1
+            });
+            s.fill = E;
+            s.opacity = 1;
+            s.fillOpacity = 1;
+            return 1;
+        },
+        updatePosition = function (o) {
+            var bbox = o.getBBox(1);
+            $(o.pattern, { patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")" });
+        },
+        addArrow = function (o, value, isEnd) {
+            if (o.type == "path") {
+                var values = Str(value).toLowerCase().split("-"),
+                    p = o.paper,
+                    se = isEnd ? "end" : "start",
+                    node = o.node,
+                    attrs = o.attrs,
+                    stroke = attrs["stroke-width"],
+                    i = values.length,
+                    type = "classic",
+                    from,
+                    to,
+                    dx,
+                    refX,
+                    attr,
+                    w = 3,
+                    h = 3,
+                    t = 5;
+                while (i--) {
+                    switch (values[i]) {
+                        case "block":
+                        case "classic":
+                        case "oval":
+                        case "diamond":
+                        case "open":
+                        case "none":
+                            type = values[i];
+                            break;
+                        case "wide": h = 5; break;
+                        case "narrow": h = 2; break;
+                        case "long": w = 5; break;
+                        case "short": w = 2; break;
+                    }
                 }
-                var value = params[att];
-                attrs[att] = value;
-                switch (att) {
-                    case "blur":
-                        o.blur(value);
-                        break;
-                    case "href":
-                    case "title":
-                    case "target":
-                        var pn = node.parentNode;
-                        if (pn.tagName.toLowerCase() != "a") {
-                            var hl = $("a");
-                            pn.insertBefore(hl, node);
-                            hl.appendChild(node);
-                            pn = hl;
-                        }
-                        if (att == "target" && value == "blank") {
-                            pn.setAttributeNS(xlink, "show", "new");
-                        } else {
-                            pn.setAttributeNS(xlink, att, value);
-                        }
-                        break;
-                    case "cursor":
-                        node.style.cursor = value;
-                        break;
-                    case "transform":
-                        o.transform(value);
-                        break;
-                    case "arrow-start":
-                        addArrow(o, value);
-                        break;
-                    case "arrow-end":
-                        addArrow(o, value, 1);
-                        break;
-                    case "clip-rect":
-                        var rect = Str(value).split(separator);
-                        if (rect.length == 4) {
-                            o.clip && o.clip.parentNode.parentNode.removeChild(o.clip.parentNode);
-                            var el = $("clipPath"),
-                                rc = $("rect");
-                            el.id = R.createUUID();
-                            $(rc, {
-                                x: rect[0],
-                                y: rect[1],
-                                width: rect[2],
-                                height: rect[3]
-                            });
-                            el.appendChild(rc);
-                            o.paper.defs.appendChild(el);
-                            $(node, {"clip-path": "url(#" + el.id + ")"});
-                            o.clip = rc;
-                        }
-                        if (!value) {
-                            var clip = R._g.doc.getElementById(node.getAttribute("clip-path").replace(/(^url\(#|\)$)/g, E));
-                            clip && clip.parentNode.removeChild(clip);
-                            $(node, {"clip-path": E});
-                            delete o.clip;
-                        }
-                    break;
-                    case "path":
-                        if (o.type == "path") {
-                            $(node, {d: value ? attrs.path = R._pathToAbsolute(value) : "M0,0"});
+                if (type == "open") {
+                    w += 2;
+                    h += 2;
+                    t += 2;
+                    dx = 1;
+                    refX = isEnd ? 4 : 1;
+                    attr = {
+                        fill: "none",
+                        stroke: attrs.stroke
+                    };
+                } else {
+                    refX = dx = w / 2;
+                    attr = {
+                        fill: attrs.stroke,
+                        stroke: "none"
+                    };
+                }
+                if (o._.arrows) {
+                    if (isEnd) {
+                        o._.arrows.endPath && markerCounter[o._.arrows.endPath]--;
+                        o._.arrows.endMarker && markerCounter[o._.arrows.endMarker]--;
+                    } else {
+                        o._.arrows.startPath && markerCounter[o._.arrows.startPath]--;
+                        o._.arrows.startMarker && markerCounter[o._.arrows.startMarker]--;
+                    }
+                } else {
+                    o._.arrows = {};
+                }
+                if (type != "none") {
+                    var pathId = "raphael-marker-" + type,
+                        markerId = "raphael-marker-" + se + type + w + h;
+                    if (!R._g.doc.getElementById(pathId)) {
+                        p.defs.appendChild($($("path"), {
+                            "stroke-linecap": "round",
+                            d: markers[type],
+                            id: pathId
+                        }));
+                        markerCounter[pathId] = 1;
+                    } else {
+                        markerCounter[pathId]++;
+                    }
+                    var marker = R._g.doc.getElementById(markerId),
+                        use;
+                    if (!marker) {
+                        marker = $($("marker"), {
+                            id: markerId,
+                            markerHeight: h,
+                            markerWidth: w,
+                            orient: "auto",
+                            refX: refX,
+                            refY: h / 2
+                        });
+                        use = $($("use"), {
+                            "xlink:href": "#" + pathId,
+                            transform: (isEnd ? " rotate(180 " + w / 2 + " " + h / 2 + ") " : S) + "scale(" + w / t + "," + h / t + ")",
+                            "stroke-width": 1 / ((w / t + h / t) / 2)
+                        });
+                        marker.appendChild(use);
+                        p.defs.appendChild(marker);
+                        markerCounter[markerId] = 1;
+                    } else {
+                        markerCounter[markerId]++;
+                        use = marker.getElementsByTagName("use")[0];
+                    }
+                    $(use, attr);
+                    var delta = dx * (type != "diamond" && type != "oval");
+                    if (isEnd) {
+                        from = o._.arrows.startdx * stroke || 0;
+                        to = R.getTotalLength(attrs.path) - delta * stroke;
+                    } else {
+                        from = delta * stroke;
+                        to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
+                    }
+                    attr = {};
+                    attr["marker-" + se] = "url(#" + markerId + ")";
+                    if (to || from) {
+                        attr.d = Raphael.getSubpath(attrs.path, from, to);
+                    }
+                    $(node, attr);
+                    o._.arrows[se + "Path"] = pathId;
+                    o._.arrows[se + "Marker"] = markerId;
+                    o._.arrows[se + "dx"] = delta;
+                    o._.arrows[se + "Type"] = type;
+                    o._.arrows[se + "String"] = value;
+                } else {
+                    if (isEnd) {
+                        from = o._.arrows.startdx * stroke || 0;
+                        to = R.getTotalLength(attrs.path) - from;
+                    } else {
+                        from = 0;
+                        to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
+                    }
+                    o._.arrows[se + "Path"] && $(node, { d: Raphael.getSubpath(attrs.path, from, to) });
+                    delete o._.arrows[se + "Path"];
+                    delete o._.arrows[se + "Marker"];
+                    delete o._.arrows[se + "dx"];
+                    delete o._.arrows[se + "Type"];
+                    delete o._.arrows[se + "String"];
+                }
+                for (attr in markerCounter) if (markerCounter[has](attr) && !markerCounter[attr]) {
+                    var item = R._g.doc.getElementById(attr);
+                    item && item.parentNode.removeChild(item);
+                }
+            }
+        },
+        dasharray = {
+            "": [0],
+            "none": [0],
+            "-": [3, 1],
+            ".": [1, 1],
+            "-.": [3, 1, 1, 1],
+            "-..": [3, 1, 1, 1, 1, 1],
+            ". ": [1, 3],
+            "- ": [4, 3],
+            "--": [8, 3],
+            "- .": [4, 3, 1, 3],
+            "--.": [8, 3, 1, 3],
+            "--..": [8, 3, 1, 3, 1, 3]
+        },
+        addDashes = function (o, value, params) {
+            value = dasharray[Str(value).toLowerCase()];
+            if (value) {
+                var width = o.attrs["stroke-width"] || "1",
+                    butt = { round: width, square: width, butt: 0 }[o.attrs["stroke-linecap"] || params["stroke-linecap"]] || 0,
+                    dashes = [],
+                    i = value.length;
+                while (i--) {
+                    dashes[i] = value[i] * width + ((i % 2) ? 1 : -1) * butt;
+                }
+                $(o.node, { "stroke-dasharray": dashes.join(",") });
+            }
+        },
+        setFillAndStroke = function (o, params) {
+            var node = o.node,
+                attrs = o.attrs,
+                vis = node.style.visibility;
+            node.style.visibility = "hidden";
+            for (var att in params) {
+                if (params[has](att)) {
+                    if (!R._availableAttrs[has](att)) {
+                        continue;
+                    }
+                    var value = params[att];
+                    attrs[att] = value;
+                    switch (att) {
+                        case "blur":
+                            o.blur(value);
+                            break;
+                        case "href":
+                        case "title":
+                        case "target":
+                            var pn = node.parentNode;
+                            if (pn.tagName.toLowerCase() != "a") {
+                                var hl = $("a");
+                                pn.insertBefore(hl, node);
+                                hl.appendChild(node);
+                                pn = hl;
+                            }
+                            if (att == "target" && value == "blank") {
+                                pn.setAttributeNS(xlink, "show", "new");
+                            } else {
+                                pn.setAttributeNS(xlink, att, value);
+                            }
+                            break;
+                        case "cursor":
+                            node.style.cursor = value;
+                            break;
+                        case "transform":
+                            o.transform(value);
+                            break;
+                        case "arrow-start":
+                            addArrow(o, value);
+                            break;
+                        case "arrow-end":
+                            addArrow(o, value, 1);
+                            break;
+                        case "clip-rect":
+                            var rect = Str(value).split(separator);
+                            if (rect.length == 4) {
+                                o.clip && o.clip.parentNode.parentNode.removeChild(o.clip.parentNode);
+                                var el = $("clipPath"),
+                                    rc = $("rect");
+                                el.id = R.createUUID();
+                                $(rc, {
+                                    x: rect[0],
+                                    y: rect[1],
+                                    width: rect[2],
+                                    height: rect[3]
+                                });
+                                el.appendChild(rc);
+                                o.paper.defs.appendChild(el);
+                                $(node, { "clip-path": "url(#" + el.id + ")" });
+                                o.clip = rc;
+                            }
+                            if (!value) {
+                                var clip = R._g.doc.getElementById(node.getAttribute("clip-path").replace(/(^url\(#|\)$)/g, E));
+                                clip && clip.parentNode.removeChild(clip);
+                                $(node, { "clip-path": E });
+                                delete o.clip;
+                            }
+                            break;
+                        case "path":
+                            if (o.type == "path") {
+                                $(node, { d: value ? attrs.path = R._pathToAbsolute(value) : "M0,0" });
+                                o._.dirty = 1;
+                                if (o._.arrows) {
+                                    "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
+                                    "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
+                                }
+                            }
+                            break;
+                        case "width":
+                            node.setAttribute(att, value);
                             o._.dirty = 1;
+                            if (attrs.fx) {
+                                att = "x";
+                                value = attrs.x;
+                            } else {
+                                break;
+                            }
+                        case "x":
+                            if (attrs.fx) {
+                                value = -attrs.x - (attrs.width || 0);
+                            }
+                        case "rx":
+                            if (att == "rx" && o.type == "rect") {
+                                break;
+                            }
+                        case "cx":
+                            node.setAttribute(att, value);
+                            o.pattern && updatePosition(o);
+                            o._.dirty = 1;
+                            break;
+                        case "height":
+                            node.setAttribute(att, value);
+                            o._.dirty = 1;
+                            if (attrs.fy) {
+                                att = "y";
+                                value = attrs.y;
+                            } else {
+                                break;
+                            }
+                        case "y":
+                            if (attrs.fy) {
+                                value = -attrs.y - (attrs.height || 0);
+                            }
+                        case "ry":
+                            if (att == "ry" && o.type == "rect") {
+                                break;
+                            }
+                        case "cy":
+                            node.setAttribute(att, value);
+                            o.pattern && updatePosition(o);
+                            o._.dirty = 1;
+                            break;
+                        case "r":
+                            if (o.type == "rect") {
+                                $(node, { rx: value, ry: value });
+                            } else {
+                                node.setAttribute(att, value);
+                            }
+                            o._.dirty = 1;
+                            break;
+                        case "src":
+                            if (o.type == "image") {
+                                node.setAttributeNS(xlink, "href", value);
+                            }
+                            break;
+                        case "stroke-width":
+                            if (o._.sx != 1 || o._.sy != 1) {
+                                value /= mmax(abs(o._.sx), abs(o._.sy)) || 1;
+                            }
+                            if (o.paper._vbSize) {
+                                value *= o.paper._vbSize;
+                            }
+                            node.setAttribute(att, value);
+                            if (attrs["stroke-dasharray"]) {
+                                addDashes(o, attrs["stroke-dasharray"], params);
+                            }
                             if (o._.arrows) {
                                 "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
                                 "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
                             }
-                        }
-                        break;
-                    case "width":
-                        node.setAttribute(att, value);
-                        o._.dirty = 1;
-                        if (attrs.fx) {
-                            att = "x";
-                            value = attrs.x;
-                        } else {
                             break;
-                        }
-                    case "x":
-                        if (attrs.fx) {
-                            value = -attrs.x - (attrs.width || 0);
-                        }
-                    case "rx":
-                        if (att == "rx" && o.type == "rect") {
+                        case "stroke-dasharray":
+                            addDashes(o, value, params);
                             break;
-                        }
-                    case "cx":
-                        node.setAttribute(att, value);
-                        o.pattern && updatePosition(o);
-                        o._.dirty = 1;
-                        break;
-                    case "height":
-                        node.setAttribute(att, value);
-                        o._.dirty = 1;
-                        if (attrs.fy) {
-                            att = "y";
-                            value = attrs.y;
-                        } else {
-                            break;
-                        }
-                    case "y":
-                        if (attrs.fy) {
-                            value = -attrs.y - (attrs.height || 0);
-                        }
-                    case "ry":
-                        if (att == "ry" && o.type == "rect") {
-                            break;
-                        }
-                    case "cy":
-                        node.setAttribute(att, value);
-                        o.pattern && updatePosition(o);
-                        o._.dirty = 1;
-                        break;
-                    case "r":
-                        if (o.type == "rect") {
-                            $(node, {rx: value, ry: value});
-                        } else {
-                            node.setAttribute(att, value);
-                        }
-                        o._.dirty = 1;
-                        break;
-                    case "src":
-                        if (o.type == "image") {
-                            node.setAttributeNS(xlink, "href", value);
-                        }
-                        break;
-                    case "stroke-width":
-                        if (o._.sx != 1 || o._.sy != 1) {
-                            value /= mmax(abs(o._.sx), abs(o._.sy)) || 1;
-                        }
-                        if (o.paper._vbSize) {
-                            value *= o.paper._vbSize;
-                        }
-                        node.setAttribute(att, value);
-                        if (attrs["stroke-dasharray"]) {
-                            addDashes(o, attrs["stroke-dasharray"], params);
-                        }
-                        if (o._.arrows) {
-                            "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
-                            "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
-                        }
-                        break;
-                    case "stroke-dasharray":
-                        addDashes(o, value, params);
-                        break;
-                    case "fill":
-                        var isURL = Str(value).match(R._ISURL);
-                        if (isURL) {
-                            el = $("pattern");
-                            var ig = $("image");
-                            el.id = R.createUUID();
-                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
-                            $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
-                            el.appendChild(ig);
+                        case "fill":
+                            var isURL = Str(value).match(R._ISURL);
+                            if (isURL) {
+                                el = $("pattern");
+                                var ig = $("image");
+                                el.id = R.createUUID();
+                                $(el, { x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1 });
+                                $(ig, { x: 0, y: 0, "xlink:href": isURL[1] });
+                                el.appendChild(ig);
 
-                            (function (el) {
-                                R._preload(isURL[1], function () {
-                                    var w = this.offsetWidth,
-                                        h = this.offsetHeight;
-                                    $(el, {width: w, height: h});
-                                    $(ig, {width: w, height: h});
-                                    o.paper.safari();
-                                });
-                            })(el);
-                            o.paper.defs.appendChild(el);
-                            node.style.fill = "url(#" + el.id + ")";
-                            $(node, {fill: "url(#" + el.id + ")"});
-                            o.pattern = el;
-                            o.pattern && updatePosition(o);
-                            break;
-                        }
-                        var clr = R.getRGB(value);
-                        if (!clr.error) {
-                            delete params.gradient;
-                            delete attrs.gradient;
-                            !R.is(attrs.opacity, "undefined") &&
-                                R.is(params.opacity, "undefined") &&
-                                $(node, {opacity: attrs.opacity});
-                            !R.is(attrs["fill-opacity"], "undefined") &&
-                                R.is(params["fill-opacity"], "undefined") &&
-                                $(node, {"fill-opacity": attrs["fill-opacity"]});
-                        } else if ((o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value)) {
-                            if ("opacity" in attrs || "fill-opacity" in attrs) {
-                                var gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
-                                if (gradient) {
-                                    var stops = gradient.getElementsByTagName("stop");
-                                    $(stops[stops.length - 1], {"stop-opacity": ("opacity" in attrs ? attrs.opacity : 1) * ("fill-opacity" in attrs ? attrs["fill-opacity"] : 1)});
+                                (function (el) {
+                                    R._preload(isURL[1], function () {
+                                        var w = this.offsetWidth,
+                                            h = this.offsetHeight;
+                                        $(el, { width: w, height: h });
+                                        $(ig, { width: w, height: h });
+                                        o.paper.safari();
+                                    });
+                                })(el);
+                                o.paper.defs.appendChild(el);
+                                node.style.fill = "url(#" + el.id + ")";
+                                $(node, { fill: "url(#" + el.id + ")" });
+                                o.pattern = el;
+                                o.pattern && updatePosition(o);
+                                break;
+                            }
+                            var clr = R.getRGB(value);
+                            if (!clr.error) {
+                                delete params.gradient;
+                                delete attrs.gradient;
+                                !R.is(attrs.opacity, "undefined") &&
+                                    R.is(params.opacity, "undefined") &&
+                                    $(node, { opacity: attrs.opacity });
+                                !R.is(attrs["fill-opacity"], "undefined") &&
+                                    R.is(params["fill-opacity"], "undefined") &&
+                                    $(node, { "fill-opacity": attrs["fill-opacity"] });
+                            } else if ((o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value)) {
+                                if ("opacity" in attrs || "fill-opacity" in attrs) {
+                                    var gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
+                                    if (gradient) {
+                                        var stops = gradient.getElementsByTagName("stop");
+                                        $(stops[stops.length - 1], { "stop-opacity": ("opacity" in attrs ? attrs.opacity : 1) * ("fill-opacity" in attrs ? attrs["fill-opacity"] : 1) });
+                                    }
                                 }
+                                attrs.gradient = value;
+                                attrs.fill = "none";
+                                break;
                             }
-                            attrs.gradient = value;
-                            attrs.fill = "none";
+                            clr[has]("opacity") && $(node, { "fill-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity });
+                        case "stroke":
+                            clr = R.getRGB(value);
+                            node.setAttribute(att, clr.hex);
+                            att == "stroke" && clr[has]("opacity") && $(node, { "stroke-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity });
+                            if (att == "stroke" && o._.arrows) {
+                                "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
+                                "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
+                            }
                             break;
-                        }
-                        clr[has]("opacity") && $(node, {"fill-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity});
-                    case "stroke":
-                        clr = R.getRGB(value);
-                        node.setAttribute(att, clr.hex);
-                        att == "stroke" && clr[has]("opacity") && $(node, {"stroke-opacity": clr.opacity > 1 ? clr.opacity / 100 : clr.opacity});
-                        if (att == "stroke" && o._.arrows) {
-                            "startString" in o._.arrows && addArrow(o, o._.arrows.startString);
-                            "endString" in o._.arrows && addArrow(o, o._.arrows.endString, 1);
-                        }
-                        break;
-                    case "gradient":
-                        (o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value);
-                        break;
-                    case "opacity":
-                        if (attrs.gradient && !attrs[has]("stroke-opacity")) {
-                            $(node, {"stroke-opacity": value > 1 ? value / 100 : value});
-                        }
+                        case "gradient":
+                            (o.type == "circle" || o.type == "ellipse" || Str(value).charAt() != "r") && addGradientFill(o, value);
+                            break;
+                        case "opacity":
+                            if (attrs.gradient && !attrs[has]("stroke-opacity")) {
+                                $(node, { "stroke-opacity": value > 1 ? value / 100 : value });
+                            }
                         // fall
-                    case "fill-opacity":
-                        if (attrs.gradient) {
-                            gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
-                            if (gradient) {
-                                stops = gradient.getElementsByTagName("stop");
-                                $(stops[stops.length - 1], {"stop-opacity": value});
+                        case "fill-opacity":
+                            if (attrs.gradient) {
+                                gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
+                                if (gradient) {
+                                    stops = gradient.getElementsByTagName("stop");
+                                    $(stops[stops.length - 1], { "stop-opacity": value });
+                                }
+                                break;
                             }
+                        default:
+                            att == "font-size" && (value = toInt(value, 10) + "px");
+                            var cssrule = att.replace(/(\-.)/g, function (w) {
+                                return w.substring(1).toUpperCase();
+                            });
+                            node.style[cssrule] = value;
+                            o._.dirty = 1;
+                            node.setAttribute(att, value);
                             break;
-                        }
-                    default:
-                        att == "font-size" && (value = toInt(value, 10) + "px");
-                        var cssrule = att.replace(/(\-.)/g, function (w) {
-                            return w.substring(1).toUpperCase();
-                        });
-                        node.style[cssrule] = value;
-                        o._.dirty = 1;
-                        node.setAttribute(att, value);
-                        break;
+                    }
                 }
             }
-        }
 
-        tuneText(o, params);
-        node.style.visibility = vis;
-    },
-    leading = 1.2,
-    tuneText = function (el, params) {
-        if (el.type != "text" || !(params[has]("text") || params[has]("font") || params[has]("font-size") || params[has]("x") || params[has]("y"))) {
-            return;
-        }
-        var a = el.attrs,
-            node = el.node,
-            fontSize = node.firstChild ? toInt(R._g.doc.defaultView.getComputedStyle(node.firstChild, E).getPropertyValue("font-size"), 10) : 10;
+            tuneText(o, params);
+            node.style.visibility = vis;
+        },
+        leading = 1.2,
+        tuneText = function (el, params) {
+            if (el.type != "text" || !(params[has]("text") || params[has]("font") || params[has]("font-size") || params[has]("x") || params[has]("y"))) {
+                return;
+            }
+            var a = el.attrs,
+                node = el.node,
+                fontSize = node.firstChild ? toInt(R._g.doc.defaultView.getComputedStyle(node.firstChild, E).getPropertyValue("font-size"), 10) : 10;
 
-        if (params[has]("text")) {
-            a.text = params.text;
-            while (node.firstChild) {
-                node.removeChild(node.firstChild);
-            }
-            var texts = Str(params.text).split("\n"),
-                tspans = [],
-                tspan;
-            for (var i = 0, ii = texts.length; i < ii; i++) {
-                tspan = $("tspan");
-                i && $(tspan, {dy: fontSize * leading, x: a.x});
-                tspan.appendChild(R._g.doc.createTextNode(texts[i]));
-                node.appendChild(tspan);
-                tspans[i] = tspan;
-            }
-        } else {
-            tspans = node.getElementsByTagName("tspan");
-            for (i = 0, ii = tspans.length; i < ii; i++) if (i) {
-                $(tspans[i], {dy: fontSize * leading, x: a.x});
+            if (params[has]("text")) {
+                a.text = params.text;
+                while (node.firstChild) {
+                    node.removeChild(node.firstChild);
+                }
+                var texts = Str(params.text).split("\n"),
+                    tspans = [],
+                    tspan;
+                for (var i = 0, ii = texts.length; i < ii; i++) {
+                    tspan = $("tspan");
+                    i && $(tspan, { dy: fontSize * leading, x: a.x });
+                    tspan.appendChild(R._g.doc.createTextNode(texts[i]));
+                    node.appendChild(tspan);
+                    tspans[i] = tspan;
+                }
             } else {
-                $(tspans[0], {dy: 0});
+                tspans = node.getElementsByTagName("tspan");
+                for (i = 0, ii = tspans.length; i < ii; i++) if (i) {
+                    $(tspans[i], { dy: fontSize * leading, x: a.x });
+                } else {
+                    $(tspans[0], { dy: 0 });
+                }
             }
-        }
-        $(node, {x: a.x, y: a.y});
-        el._.dirty = 1;
-        var bb = el._getBBox(),
-            dif = a.y - (bb.y + bb.height / 2);
-        dif && R.is(dif, "finite") && $(tspans[0], {dy: dif});
-    },
-    Element = function (node, svg) {
-        var X = 0,
-            Y = 0;
-        
-        this[0] = this.node = node;
-        
-        node.raphael = true;
-        
-        this.id = R._oid++;
-        node.raphaelid = this.id;
-        this.matrix = R.matrix();
-        this.realPath = null;
-        
-        this.paper = svg;
-        this.attrs = this.attrs || {};
-        this._ = {
-            transform: [],
-            sx: 1,
-            sy: 1,
-            deg: 0,
-            dx: 0,
-            dy: 0,
-            dirty: 1
-        };
-        !svg.bottom && (svg.bottom = this);
-        
-        this.prev = svg.top;
-        svg.top && (svg.top.next = this);
-        svg.top = this;
-        
-        this.next = null;
-    },
-    elproto = R.el;
+            $(node, { x: a.x, y: a.y });
+            el._.dirty = 1;
+            var bb = el._getBBox(),
+                dif = a.y - (bb.y + bb.height / 2);
+            dif && R.is(dif, "finite") && $(tspans[0], { dy: dif });
+        },
+        Element = function (node, svg) {
+            var X = 0,
+                Y = 0;
+
+            this[0] = this.node = node;
+
+            node.raphael = true;
+
+            this.id = R._oid++;
+            node.raphaelid = this.id;
+            this.matrix = R.matrix();
+            this.realPath = null;
+
+            this.paper = svg;
+            this.attrs = this.attrs || {};
+            this._ = {
+                transform: [],
+                sx: 1,
+                sy: 1,
+                deg: 0,
+                dx: 0,
+                dy: 0,
+                dirty: 1
+            };
+            !svg.bottom && (svg.bottom = this);
+
+            this.prev = svg.top;
+            svg.top && (svg.top.next = this);
+            svg.top = this;
+
+            this.next = null;
+        },
+        elproto = R.el;
 
     Element.prototype = elproto;
     elproto.constructor = Element;
@@ -3982,7 +3982,7 @@ window.Raphael.svg && function (R) {
         });
         return p;
     };
-    
+
     elproto.rotate = function (deg, cx, cy) {
         if (this.removed) {
             return this;
@@ -4002,7 +4002,7 @@ window.Raphael.svg && function (R) {
         this.transform(this._.transform.concat([["r", deg, cx, cy]]));
         return this;
     };
-    
+
     elproto.scale = function (sx, sy, cx, cy) {
         if (this.removed) {
             return this;
@@ -4024,7 +4024,7 @@ window.Raphael.svg && function (R) {
         this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
         return this;
     };
-    
+
     elproto.translate = function (dx, dy) {
         if (this.removed) {
             return this;
@@ -4038,7 +4038,7 @@ window.Raphael.svg && function (R) {
         this.transform(this._.transform.concat([["t", dx, dy]]));
         return this;
     };
-    
+
     elproto.transform = function (tstr) {
         var _ = this._;
         if (tstr == null) {
@@ -4046,28 +4046,28 @@ window.Raphael.svg && function (R) {
         }
         R._extractTransform(this, tstr);
 
-        this.clip && $(this.clip, {transform: this.matrix.invert()});
+        this.clip && $(this.clip, { transform: this.matrix.invert() });
         this.pattern && updatePosition(this);
-        this.node && $(this.node, {transform: this.matrix});
-    
+        this.node && $(this.node, { transform: this.matrix });
+
         if (_.sx != 1 || _.sy != 1) {
             var sw = this.attrs[has]("stroke-width") ? this.attrs["stroke-width"] : 1;
-            this.attr({"stroke-width": sw});
+            this.attr({ "stroke-width": sw });
         }
 
         return this;
     };
-    
+
     elproto.hide = function () {
         !this.removed && this.paper.safari(this.node.style.display = "none");
         return this;
     };
-    
+
     elproto.show = function () {
         !this.removed && this.paper.safari(this.node.style.display = "");
         return this;
     };
-    
+
     elproto.remove = function () {
         if (this.removed) {
             return;
@@ -4088,7 +4088,7 @@ window.Raphael.svg && function (R) {
         var bbox = {};
         try {
             bbox = this.node.getBBox();
-        } catch(e) {
+        } catch (e) {
             // Firefox 3.0.x plays badly here
         } finally {
             bbox = bbox || {};
@@ -4096,7 +4096,7 @@ window.Raphael.svg && function (R) {
         hide && this.hide();
         return bbox;
     };
-    
+
     elproto.attr = function (name, value) {
         if (this.removed) {
             return this;
@@ -4154,7 +4154,7 @@ window.Raphael.svg && function (R) {
         setFillAndStroke(this, params);
         return this;
     };
-    
+
     elproto.toFront = function () {
         if (this.removed) {
             return this;
@@ -4164,7 +4164,7 @@ window.Raphael.svg && function (R) {
         svg.top != this && R._tofront(this, svg);
         return this;
     };
-    
+
     elproto.toBack = function () {
         if (this.removed) {
             return this;
@@ -4176,7 +4176,7 @@ window.Raphael.svg && function (R) {
         }
         return this;
     };
-    
+
     elproto.insertAfter = function (element) {
         if (this.removed) {
             return this;
@@ -4190,7 +4190,7 @@ window.Raphael.svg && function (R) {
         R._insertafter(this, element, this.paper);
         return this;
     };
-    
+
     elproto.insertBefore = function (element) {
         if (this.removed) {
             return this;
@@ -4208,11 +4208,11 @@ window.Raphael.svg && function (R) {
                 blur = $("feGaussianBlur");
             t.attrs.blur = size;
             fltr.id = R.createUUID();
-            $(blur, {stdDeviation: +size || 1.5});
+            $(blur, { stdDeviation: +size || 1.5 });
             fltr.appendChild(blur);
             t.paper.defs.appendChild(fltr);
             t._blur = fltr;
-            $(t.node, {filter: "url(#" + fltr.id + ")"});
+            $(t.node, { filter: "url(#" + fltr.id + ")" });
         } else {
             if (t._blur) {
                 t._blur.parentNode.removeChild(t._blur);
@@ -4226,7 +4226,7 @@ window.Raphael.svg && function (R) {
         var el = $("circle");
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {cx: x, cy: y, r: r, fill: "none", stroke: "#000"};
+        res.attrs = { cx: x, cy: y, r: r, fill: "none", stroke: "#000" };
         res.type = "circle";
         $(el, res.attrs);
         return res;
@@ -4235,7 +4235,7 @@ window.Raphael.svg && function (R) {
         var el = $("rect");
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {x: x, y: y, width: w, height: h, r: r || 0, rx: r || 0, ry: r || 0, fill: "none", stroke: "#000"};
+        res.attrs = { x: x, y: y, width: w, height: h, r: r || 0, rx: r || 0, ry: r || 0, fill: "none", stroke: "#000" };
         res.type = "rect";
         $(el, res.attrs);
         return res;
@@ -4244,18 +4244,18 @@ window.Raphael.svg && function (R) {
         var el = $("ellipse");
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {cx: x, cy: y, rx: rx, ry: ry, fill: "none", stroke: "#000"};
+        res.attrs = { cx: x, cy: y, rx: rx, ry: ry, fill: "none", stroke: "#000" };
         res.type = "ellipse";
         $(el, res.attrs);
         return res;
     };
     R._engine.image = function (svg, src, x, y, w, h) {
         var el = $("image");
-        $(el, {x: x, y: y, width: w, height: h, preserveAspectRatio: "none"});
+        $(el, { x: x, y: y, width: w, height: h, preserveAspectRatio: "none" });
         el.setAttributeNS(xlink, "href", src);
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {x: x, y: y, width: w, height: h, src: src};
+        res.attrs = { x: x, y: y, width: w, height: h, src: src };
         res.type = "image";
         return res;
     };
@@ -4329,7 +4329,7 @@ window.Raphael.svg && function (R) {
         // plugins.call(container, container, R.fn);
         container.clear();
         container._left = container._top = 0;
-        isFloating && (container.renderfix = function () {});
+        isFloating && (container.renderfix = function () { });
         container.renderfix();
         return container;
     };
@@ -4356,7 +4356,7 @@ window.Raphael.svg && function (R) {
         });
         while (size && top) {
             sw = "stroke-width" in top.attrs ? top.attrs["stroke-width"] : 1;
-            top.attr({"stroke-width": sw});
+            top.attr({ "stroke-width": sw });
             top._.dirty = 1;
             top._.dirtyT = 1;
             top = top.prev;
@@ -4364,7 +4364,7 @@ window.Raphael.svg && function (R) {
         this._viewBox = [x, y, w, h, !!fit];
         return this;
     };
-    
+
     R.prototype.renderfix = function () {
         var cnvs = this.canvas,
             s = cnvs.style,
@@ -4382,7 +4382,7 @@ window.Raphael.svg && function (R) {
             }
         }
     };
-    
+
     R.prototype.clear = function () {
         R.eve("clear", this);
         var c = this.canvas;
@@ -4394,7 +4394,7 @@ window.Raphael.svg && function (R) {
         c.appendChild(this.desc);
         c.appendChild(this.defs = $("defs"));
     };
-    
+
     R.prototype.remove = function () {
         eve("remove", this);
         this.canvas.parentNode && this.canvas.parentNode.removeChild(this.canvas);
@@ -4439,16 +4439,16 @@ window.Raphael.vml && function (R) {
         ms = " progid:DXImageTransform.Microsoft",
         S = " ",
         E = "",
-        map = {M: "m", L: "l", C: "c", Z: "x", m: "t", l: "r", c: "v", z: "x"},
+        map = { M: "m", L: "l", C: "c", Z: "x", m: "t", l: "r", c: "v", z: "x" },
         bites = /([clmz]),?([^clmz]*)/gi,
         blurregexp = / progid:\S+Blur\([^\)]+\)/g,
         val = /-?[^,\s-]+/g,
         cssDot = "position:absolute;left:0;top:0;width:1px;height:1px",
         zoom = 21600,
-        pathTypes = {path: 1, rect: 1, image: 1},
-        ovalTypes = {circle: 1, ellipse: 1},
+        pathTypes = { path: 1, rect: 1, image: 1 },
+        ovalTypes = { circle: 1, ellipse: 1 },
         path2vml = function (path) {
-            var total =  /[ahqstv]/ig,
+            var total = /[ahqstv]/ig,
                 command = R._pathToAbsolute;
             Str(path).match(total) && (command = R._path2curve);
             total = /[clmz]/g;
@@ -4531,7 +4531,7 @@ window.Raphael.vml && function (R) {
             s.visibility = "visible";
         };
     R.toString = function () {
-        return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
+        return "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
     };
     addArrow = function (o, value, isEnd) {
         var values = Str(value).toLowerCase().split("-"),
@@ -4638,7 +4638,7 @@ window.Raphael.vml && function (R) {
         if ("arrow-end" in params) {
             addArrow(res, params["arrow-end"], 1);
         }
-        if (params.opacity != null || 
+        if (params.opacity != null ||
             params["stroke-width"] != null ||
             params.fill != null ||
             params.src != null ||
@@ -4679,7 +4679,7 @@ window.Raphael.vml && function (R) {
                     fill.color = R.getRGB(params.fill).hex;
                     fill.src = E;
                     fill.type = "solid";
-                    if (R.getRGB(params.fill).error && (res.type in {circle: 1, ellipse: 1} || Str(params.fill).charAt() != "r") && addGradientFill(res, params.fill, fill)) {
+                    if (R.getRGB(params.fill).error && (res.type in { circle: 1, ellipse: 1 } || Str(params.fill).charAt() != "r") && addGradientFill(res, params.fill, fill)) {
                         a.fill = "none";
                         a.gradient = params.fill;
                         fill.rotate = false;
@@ -4696,7 +4696,7 @@ window.Raphael.vml && function (R) {
             }
             node.appendChild(fill);
             var stroke = (node.getElementsByTagName("stroke") && node.getElementsByTagName("stroke")[0]),
-            newstroke = false;
+                newstroke = false;
             !stroke && (newstroke = stroke = createNode("stroke"));
             if ((params.stroke && params.stroke != "none") ||
                 params["stroke-width"] ||
@@ -4717,7 +4717,7 @@ window.Raphael.vml && function (R) {
             params["stroke-width"] && (stroke.weight = width);
             width && width < 1 && (opacity *= width) && (stroke.weight = 1);
             stroke.opacity = opacity;
-        
+
             params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
             stroke.miterlimit = params["stroke-miterlimit"] || 8;
             params["stroke-linecap"] && (stroke.endcap = params["stroke-linecap"] == "butt" ? "flat" : params["stroke-linecap"] == "square" ? "square" : "round");
@@ -4764,21 +4764,21 @@ window.Raphael.vml && function (R) {
                 res._.dirty = 1;
                 break;
             }
-        
+
             // text-anchor emulation
             switch (a["text-anchor"]) {
                 case "start":
                     res.textpath.style["v-text-align"] = "left";
                     res.bbx = res.W / 2;
-                break;
+                    break;
                 case "end":
                     res.textpath.style["v-text-align"] = "right";
                     res.bbx = -res.W / 2;
-                break;
+                    break;
                 default:
                     res.textpath.style["v-text-align"] = "center";
                     res.bbx = 0;
-                break;
+                    break;
             }
             res.textpath.style["v-text-kern"] = true;
         }
@@ -4973,7 +4973,7 @@ window.Raphael.vml && function (R) {
         }
         cx = cx == null ? bbox.x + bbox.width / 2 : cx;
         cy = cy == null ? bbox.y + bbox.height / 2 : cy;
-    
+
         this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
         this._.dirtyT = 1;
         return this;
@@ -5140,7 +5140,7 @@ window.Raphael.vml && function (R) {
         el.coordsize = zoom + S + zoom;
         el.coordorigin = vml.coordorigin;
         var p = new Element(el, vml),
-            attr = {fill: "none", stroke: "#000"};
+            attr = { fill: "none", stroke: "#000" };
         pathString && (attr.path = pathString);
         p.type = "path";
         p.path = [];
@@ -5199,7 +5199,7 @@ window.Raphael.vml && function (R) {
     };
     R._engine.image = function (vml, src, x, y, w, h) {
         var path = R._rectPath(x, y, w, h),
-            res = vml.path(path).attr({stroke: "none"}),
+            res = vml.path(path).attr({ stroke: "none" }),
             a = res.attrs,
             node = res.node,
             fill = node.getElementsByTagName(fillString)[0];
@@ -5359,7 +5359,7 @@ window.Raphael.vml && function (R) {
             }
         }
         // plugins.call(res, res, R.fn);
-        res.renderfix = function () {};
+        res.renderfix = function () { };
         return res;
     };
     R.prototype.clear = function () {

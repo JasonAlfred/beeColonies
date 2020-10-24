@@ -13,7 +13,6 @@ getBeeData();
 d3.select("#graph2")
     .on("click", function () {
         // Get current event info
-        console.log("This is being")
         choroplethMap()
     });
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="description" content={{description}}>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
     <!-- JQuery-->
     <!-- Leaflet/Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
     <!-- free icon from https://icons8.com/icons/set/bee -->
 </head>
 
-  <body>
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="bee-brand">
@@ -38,90 +38,87 @@
     </nav>
 
     <div class="row">
-        <div class = "col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
-        <!-- Bootstrap List Group -->
-        <ul class="list-group">
-            <!-- Separator with title -->
-            <li class="bee-menu-header list-group-item">
-                MAIN MENU
-            </li>
-            <a href="/" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div>Home</div>
-                </div>
-            </a>
-            <a href="/queenBee" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph1">Bee Colony Loss by State</div>
-                </div>
-            </a>
-            <a href="/choropleth" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph2">Bee Colony Density by County</div>
-                </div>
-            </a>
+        <div class="col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <!-- Separator with title -->
+                <li class="bee-menu-header list-group-item">
+                    MAIN MENU
+                </li>
+                <a href="/" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div>Home</div>
+                    </div>
+                </a>
+                <a href="/queenBee" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph1">Bee Colony Loss by State</div>
+                    </div>
+                </a>
+                <a href="/choropleth" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph2">Bee Colony Density by County</div>
+                    </div>
+                </a>
 
-            <li class="bee-menu-header list-group-item">
-                Extra
-            </li>
-            <a href="/extra" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="data_link">Stuff</span>
-                </div>
-            </a>
-        </ul>
+                <li class="bee-menu-header list-group-item">
+                    Extra
+                </li>
+                <a href="/extra" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="data_link">Stuff</span>
+                    </div>
+                </a>
+            </ul>
         </div><!-- sidebar-container END -->
 
-            <div class = "col-10 ">
-                <div class="row mt-4 ml-2">
-                    <div class = "col">
-                        <h4>Project Planning</h4>
-                        <p><img src="../static/plan.jpg" width="700px" height="400px" alt="ali's noodle-stained diagram :P"></p>                        
-                        <p>Ali's masterpiece outlining what we want our pages to look like.</p>
-                    
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="https://data.world/finley/bee-colony-statistical-data-from-1987-2017" target="_blank">Data source</a></li>
-                            <li><a href="https://www.epa.gov/pollinator-protection/colony-collapse-disorder" target="_blank">What's a Colony Collapse Disorder?</a></li>
-                            <li><a href="https://theecologist.org/2008/feb/11/give-bees-chance" target="_blank">Give Bees A Chance</a></li>
-                            <li><a href="http://www.newyorkbeesanctuary.org/blog/2016/3/3/10-ways-you-can-help-save-the-bees" target="_blank">"Bee"-come A Hero: How To Save The Bees</a></li>
-                            <li><a href="https://thoughtcatalog.com/january-nelson/2018/06/bee-puns/" target="_blank">Brighten Your Day with Bee Puns</a></li>
-                        </ul>
+        <div class="col-10 ">
+            <div class="row mt-4 ml-2">
+                <div class="col">
+                    <h4>Project Planning</h4>
+                    <p><img src="../static/plan.jpg" width="700px" height="400px" alt="ali's noodle-stained diagram :P">
+                    </p>
+                    <p>Ali's masterpiece outlining what we want our pages to look like.</p>
 
-
-
-                    </div>
-                
-                    <div class = "col mr-5">
-                        <h4>21 Bees Team Members</h4>
-                        <ul>
-                            <li>Alexis Anderson</li>
-                            <li>Jason Alfred</li>
-                            <li>Rhyce Erickson</li>
-                            <li>Cynthia Kunakom</li>
-                        </ul>
-
-                        <h4>Logos</h4>
-                        <p><img src="../static/logo1.jpg" width="230px" height="auto" alt="21 bees logo1">
-                            <img src="../static/logo2.jpg" width="400px" height="auto" alt="21 bees logo2"></p>
-
-                        <h4>Fun Fact</h4>
-                        <p>Why '21 Bees'? This is an inside-joke within our team. We were note sure what the 'Value' column within our dataset implies.
-                            During brainstorming, our buddy, Rhyce, blurt out "Maybe it's the number of bees!" Jason was scrolling through the table, and one of the states
-                            has the 'Value' listed as 21. One of us asked, "21 bees within a state?" All of us started laughing away 😆
-                        </p>
-
-                    </div>
-
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://data.world/finley/bee-colony-statistical-data-from-1987-2017"
+                                target="_blank">Data source</a></li>
+                        <li><a href="https://www.epa.gov/pollinator-protection/colony-collapse-disorder"
+                                target="_blank">What's a Colony Collapse Disorder?</a></li>
+                        <li><a href="https://theecologist.org/2008/feb/11/give-bees-chance" target="_blank">Give Bees A
+                                Chance</a></li>
+                        <li><a href="http://www.newyorkbeesanctuary.org/blog/2016/3/3/10-ways-you-can-help-save-the-bees"
+                                target="_blank">"Bee"-come A Hero: How To Save The Bees</a></li>
+                        <li><a href="https://thoughtcatalog.com/january-nelson/2018/06/bee-puns/"
+                                target="_blank">Brighten Your Day with Bee Puns</a></li>
+                    </ul>
                 </div>
- 
+
+                <div class="col mr-5">
+                    <h4>21 Bees Team Members</h4>
+                    <ul>
+                        <li>Alexis Anderson</li>
+                        <li>Jason Alfred</li>
+                        <li>Rhyce Erickson</li>
+                        <li>Cynthia Kunakom</li>
+                    </ul>
+
+                    <h4>Logos</h4>
+                    <p><img src="../static/logo1.jpg" width="230px" height="auto" alt="21 bees logo1">
+                        <img src="../static/logo2.jpg" width="400px" height="auto" alt="21 bees logo2"></p>
+
+                    <h4>Fun Fact</h4>
+                    <p>Why '21 Bees'? This is an inside-joke within our team. We were note sure what the 'Value' column
+                        within our dataset implies.
+                        During brainstorming, our buddy, Rhyce, blurt out "Maybe it's the number of bees!" Jason was
+                        scrolling through the table, and one of the states
+                        has the 'Value' listed as 21. One of us asked, "21 bees within a state?" All of us started
+                        laughing away 😆
+                    </p>
+                </div>
             </div>
-
-
-
+        </div>
     </div>
-
-   
 </body>
-
 </html>

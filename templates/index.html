@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="description" content={{description}}>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
     <!-- JQuery-->
     <!-- Leaflet/Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
     <!-- free icon from https://icons8.com/icons/set/bee -->
 </head>
 
-  <body>
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="bee-brand">
@@ -38,76 +38,80 @@
     </nav>
 
     <div class="row">
-        <div class = "col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
-        <!-- Bootstrap List Group -->
-        <ul class="list-group">
-            <!-- Separator with title -->
-            <li class="bee-menu-header list-group-item">
-                MAIN MENU
-            </li>
-            <a href="/" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div>Home</div>
-                </div>
-            </a>
-            <a href="/queenBee" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph1">Bee Colony Loss by State</div>
-                </div>
-            </a>
-            <a href="/choropleth" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph2">Bee Colony Density by County</div>
-                </div>
-            </a>
+        <div class="col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <!-- Separator with title -->
+                <li class="bee-menu-header list-group-item">
+                    MAIN MENU
+                </li>
+                <a href="/" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div>Home</div>
+                    </div>
+                </a>
+                <a href="/queenBee" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph1">Bee Colony Loss by State</div>
+                    </div>
+                </a>
+                <a href="/choropleth" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph2">Bee Colony Density by County</div>
+                    </div>
+                </a>
 
-            <li class="bee-menu-header list-group-item">
-                Extra
-            </li>
-            <a href="/extra" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="data_link">Stuff</span>
-                </div>
-            </a>
-        </ul>
+                <li class="bee-menu-header list-group-item">
+                    Extra
+                </li>
+                <a href="/extra" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="data_link">Stuff</span>
+                    </div>
+                </a>
+            </ul>
         </div><!-- sidebar-container END -->
 
-            <div class = "col-10">
+        <div class="col-10">
 
-                <style>
-                    h1 {text-align: left;}
-                    p {text-align: left;}
-                    /* p {padding-left: 50px;} */
-                    div {text-align: center;}
-                    /* img {border: 3px solid rgb(5, 5, 5);} */
-                </style>
-                <h1>What's The 'Buzz' All About?</h1>
+            <style>
+                h1 {
+                    text-align: left;
+                }
 
-           
-                <img src = "https://theecologist.org/sites/default/files/styles/inline_l/public/NG_media/76713.jpg?itok=x-pvMOq7" title = "Image source: https://theecologist.org/2008/feb/11/give-bees-chance" 
-                alt = "bee picture"  align = "left" style= "width:500px;height:350px;padding-right: 30px;">
-               
-               
-               
+                p {
+                    text-align: left;
+                }
 
-                <p> In congruence with our value in environmental stweardship, our group decided to focus on honeybee populations as a critical topic worthy of exploration.
-                     Honeybees are an example of what are considered keystone species that play crucial roles in maintaining the integrity of ecosystems.
-                     In the case of honeybees, they are responsible for the continued reproduction of plants via pollination--a function essential for agriculture and human food supply.</p>
-                     <p> Our project vusualizes bee colony data over time, 
-                         tracking number the number of colonies and beekeepers per state as well as known causes of colony loss--a subject of great importance to researchers in the field.</p>
-                         <p>For more information on the plight of bees, checkout more of our <a href="extra" target="_self">stuff.</a></p>
-                         <img src = "https://www.pestworld.org/media/561900/honey-bee-foraging-side-view.jpg?preset=pestFeature1280" title= "Image Source: https://www.pestworld.org/pest-guide/stinging-insects/honey-bees/" 
-                atl = "bee picture" align = "left">
-            </div>
+                /* p {padding-left: 50px;} */
+                div {
+                    text-align: center;
+                }
+
+                /* img {border: 3px solid rgb(5, 5, 5);} */
+            </style>
+            <h1>What's The 'Buzz' All About?</h1>
 
 
+            <img src="https://theecologist.org/sites/default/files/styles/inline_l/public/NG_media/76713.jpg?itok=x-pvMOq7"
+                title="Image source: https://theecologist.org/2008/feb/11/give-bees-chance" alt="bee picture"
+                align="left" style="width:500px;height:350px;padding-right: 30px;">
 
+            <p> In congruence with our value in environmental stweardship, our group decided to focus on honeybee
+                populations as a critical topic worthy of exploration.
+                Honeybees are an example of what are considered keystone species that play crucial roles in maintaining
+                the integrity of ecosystems.
+                In the case of honeybees, they are responsible for the continued reproduction of plants via
+                pollination--a function essential for agriculture and human food supply.</p>
+            <p> Our project vusualizes bee colony data over time,
+                tracking number the number of colonies and beekeepers per state as well as known causes of colony
+                loss--a subject of great importance to researchers in the field.</p>
+            <p>For more information on the plight of bees, checkout more of our <a href="extra"
+                    target="_self">stuff.</a></p>
+            <img src="https://www.pestworld.org/media/561900/honey-bee-foraging-side-view.jpg?preset=pestFeature1280"
+                title="Image Source: https://www.pestworld.org/pest-guide/stinging-insects/honey-bees/"
+                alt="bee picture" align="left">
+        </div>
     </div>
-
-   
 </body>
-
 </html>
-
-
-

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="description" content={{description}}>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
     <!-- JQuery-->
     <!-- Leaflet/Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
     <!-- free icon from https://icons8.com/icons/set/bee -->
 </head>
 
-  <body>
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="bee-brand">
@@ -38,70 +38,64 @@
     </nav>
 
     <div class="row">
-        <div class = "col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
-        <!-- Bootstrap List Group -->
-        <ul class="list-group">
-            <!-- Separator with title -->
-            <li class="bee-menu-header list-group-item">
-                MAIN MENU
-            </li>
-            <a href="/" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div>Home</div>
-                </div>
-            </a>
-            <a href="/queenBee" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph1">Bee Colony Loss by State</div>
-                </div>
-            </a>
-            <a href="/choropleth" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <div id="graph2">Bee Colony Density by County</div>
-                </div>
-            </a>
+        <div class="col-2 sidebar-expanded d-none d-md-block" id="sidebar-container">
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <!-- Separator with title -->
+                <li class="bee-menu-header list-group-item">
+                    MAIN MENU
+                </li>
+                <a href="/" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div>Home</div>
+                    </div>
+                </a>
+                <a href="/queenBee" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph1">Bee Colony Loss by State</div>
+                    </div>
+                </a>
+                <a href="/choropleth" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <div id="graph2">Bee Colony Density by County</div>
+                    </div>
+                </a>
 
-            <li class="bee-menu-header list-group-item">
-                Extra
-            </li>
-            <a href="/extra" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="data_link">Stuff</span>
-                </div>
-            </a>
-        </ul>
+                <li class="bee-menu-header list-group-item">
+                    Extra
+                </li>
+                <a href="/extra" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="data_link">Stuff</span>
+                    </div>
+                </a>
+            </ul>
         </div><!-- sidebar-container END -->
 
-            <div class = "col-10">
+        <div class="col-10">
 
-                <div class="row mt-4 ml-2">
-                    <div class = "col-6 text-center">
-                        <div class="alert alert-primary" role="alert">
-                            Click on the map to learn more about the bee colonies of each state!
-                        </div>
-
-                        <div class="mx-auto" id="usaMap" style="width: 700px; height: 400px;"></div>      
+            <div class="row mt-4 ml-2">
+                <div class="col-6 text-center">
+                    <div class="alert alert-primary" role="alert">
+                        Click on the map to learn more about the bee colonies of each state!
                     </div>
 
-                    <div class = "col-6">
+                    <div class="mx-auto" id="usaMap" style="width: 700px; height: 400px;"></div>
+                </div>
 
-                        <div id="ali" style="width: 700px; height: 400px;"></div>
-                        <div id="rhyce" style="width: 700px; height: 400px;"></div>
-                        
+                <div class="col-6">
 
-                        <!-- TO DO: See if the plot can position the label somewhere else -->
-                        <!-- Also make the labels consistent with Ali's graph -->
-                        <div id="cynthia" style="width: 700px; height: 400px;"></div>
+                    <div id="ali" style="width: 700px; height: 400px;"></div>
+                    <div id="rhyce" style="width: 700px; height: 400px;"></div>
 
-                    </div>
+
+                    <!-- TO DO: See if the plot can position the label somewhere else -->
+                    <!-- Also make the labels consistent with Ali's graph -->
+                    <div id="cynthia" style="width: 700px; height: 400px;"></div>
+
                 </div>
             </div>
-
-
-
+        </div>
     </div>
-
-   
 </body>
-
 </html>

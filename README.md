@@ -13,7 +13,7 @@ This is Project 2 for Data Analytics & Visualization Bootcamp University of Minn
 
 **Technologies & Tools**
 - Python: Flask, SQLAlchemy, pandas, jupyter notebook
-- Java Script: raphael.js, plotly.js, leaflet.js, jquery.js
+- Java Script: raphael.js, plotly.js, leaflet.js, jQuery.js, choropleth.js
 - HTML & CSS + Bootstrap
 - Database: SQLite
 
